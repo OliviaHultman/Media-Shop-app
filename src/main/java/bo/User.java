@@ -8,9 +8,9 @@ public class User {
     private String email;
     private String password;
     private Authority authority;
-    private ArrayList<Product> cart;
+    private ArrayList<Media> cart;
 
-    public User(String firstName, String lastName, String email, String password, Authority authority, ArrayList<Product> cart) {
+    public User(String firstName, String lastName, String email, String password, Authority authority, ArrayList<Media> cart) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -39,7 +39,7 @@ public class User {
         return authority;
     }
 
-    public ArrayList<Product> getCart() {
+    public ArrayList<Media> getCart() {
         return cart;
     }
 }

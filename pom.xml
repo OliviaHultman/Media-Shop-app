@@ -36,11 +36,6 @@
         <version>${junit.version}</version>
         <scope>test</scope>
       </dependency>
-      <dependency>
-          <groupId>org.mongodb</groupId>
-          <artifactId>mongodb-driver-sync</artifactId>
-          <version>5.1.1</version>
-      </dependency>
   </dependencies>
 
   <build>
