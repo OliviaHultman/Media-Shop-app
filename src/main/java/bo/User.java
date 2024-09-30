@@ -10,13 +10,13 @@ public class User {
     private Authority authority;
     private ArrayList<Media> cart;
 
-    public User(String firstName, String lastName, String email, String password, Authority authority, ArrayList<Media> cart) {
+    public User(String firstName, String lastName, String email, String password, Authority authority) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.authority = authority;
-        this.cart = cart;
+        cart = new ArrayList<>();
     }
 
     public String getFirstName() {
