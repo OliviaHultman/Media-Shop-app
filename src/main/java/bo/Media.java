@@ -1,6 +1,9 @@
 package bo;
 
-import java.time.LocalDate;
+import db.DbMedia;
+
+import java.sql.Date;
+import java.util.ArrayList;
 
 public class Media {
     private String ean;
@@ -9,12 +12,12 @@ public class Media {
     private Category category;
     private String label;
     private Genre genre;
-    private LocalDate released;
+    private Date released;
     private String description;
     private int price;
     private int nrOfCopies;
 
-    public Media(String ean, String name, String artist, Category category, String label, Genre genre, LocalDate released, String description, int price, int nrOfCopies) {
+    public Media(String ean, String name, String artist, Category category, String label, Genre genre, Date released, String description, int price, int nrOfCopies) {
         this.ean = ean;
         this.name = name;
         this.artist = artist;
@@ -25,6 +28,14 @@ public class Media {
         this.description = description;
         this.price = price;
         this.nrOfCopies = nrOfCopies;
+    }
+
+    public static ArrayList<DbMedia> getMedias() {
+        return DbMedia.selectMedia();
+    }
+
+    public static ArrayList<DbMedia> getUserMedias(String user) {
+        return DbMedia.selectMediaByUser(user);
     }
 
     public String getEan() {
@@ -39,7 +50,7 @@ public class Media {
         return artist;
     }
 
-    public Category getMedia() {
+    public Category getCategory() {
         return category;
     }
 
@@ -51,7 +62,7 @@ public class Media {
         return genre;
     }
 
-    public LocalDate getReleased() {
+    public Date getReleased() {
         return released;
     }
 

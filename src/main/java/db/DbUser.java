@@ -1,10 +1,7 @@
 package db;
 
-import bo.Authority;
-import bo.Media;
-import bo.User;
+import bo.*;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -42,4 +39,6 @@ public class DbUser extends User {
         }
         return null;
     }
+
+
 }

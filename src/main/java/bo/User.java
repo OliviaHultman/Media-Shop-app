@@ -11,6 +11,7 @@ public class User {
     private String password;
     private Authority authority;
     private ArrayList<Media> cart;
+    private ArrayList<Media> ordered;
 
     protected User(String email, String firstName, String lastName, String password, Authority authority) {
         this.email = email;
@@ -19,9 +20,10 @@ public class User {
         this.password = password;
         this.authority = authority;
         cart = new ArrayList<>();
+        ordered = new ArrayList<>();
     }
 
-    public static User selectUserByEmail(String email) {
+    public static User getUser(String email) {
         return DbUser.selectUserByEmail(email);
     }
 
@@ -47,5 +49,9 @@ public class User {
 
     public ArrayList<Media> getCart() {
         return cart;
+    }
+
+    public ArrayList<Media> getOrdered() {
+        return ordered;
     }
 }

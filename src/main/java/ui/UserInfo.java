@@ -11,7 +11,8 @@ public class UserInfo {
     private String lastName;
     private String password;
     private Authority authority;
-    private ArrayList<Media> cart;
+    private ArrayList<MediaInfo> cart;
+    private ArrayList<MediaInfo> ordered;
 
     public UserInfo( String email, String firstName, String lastName, String password, Authority authority) {
         this.email = email;
@@ -20,6 +21,7 @@ public class UserInfo {
         this.password = password;
         this.authority = authority;
         cart = new ArrayList<>();
+        ordered = new ArrayList<>();
     }
 
     public String getEmail() {
@@ -42,7 +44,11 @@ public class UserInfo {
         return authority;
     }
 
-    public ArrayList<Media> getCart() {
+    public ArrayList<MediaInfo> getCart() {
         return cart;
+    }
+
+    public ArrayList<MediaInfo> getOrdered() {
+        return ordered;
     }
 }

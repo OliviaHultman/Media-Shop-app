@@ -3,7 +3,7 @@ package ui;
 import bo.Category;
 import bo.Genre;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 public class MediaInfo {
     private String ean;
@@ -12,12 +12,12 @@ public class MediaInfo {
     private Category category;
     private String label;
     private Genre genre;
-    private LocalDate released;
+    private Date released;
     private String description;
     private int price;
     private int nrOfCopies;
 
-    public MediaInfo(String ean, String name, String artist, Category category, String label, Genre genre, LocalDate released, String description, int price, int nrOfCopies) {
+    public MediaInfo(String ean, String name, String artist, Category category, String label, Genre genre, Date released, String description, int price, int nrOfCopies) {
         this.ean = ean;
         this.name = name;
         this.artist = artist;
@@ -42,7 +42,7 @@ public class MediaInfo {
         return artist;
     }
 
-    public Category getMedia() {
+    public Category getCategory() {
         return category;
     }
 
@@ -54,7 +54,7 @@ public class MediaInfo {
         return genre;
     }
 
-    public LocalDate getReleased() {
+    public Date getReleased() {
         return released;
     }
 
