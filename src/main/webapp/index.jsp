@@ -21,8 +21,8 @@
 <% for (MediaInfo mediaInfo : mediasInfo) {%>
   <%=mediaInfo.getName()%>
 <%}%>
-<!--UserHandler.addToCart(new MediaInfo("0194397051223", "Fine Line", "Harry Styles", Category.LP, "Columbia", Genre.POP,
-        new Date(119, 11, 13), "", 494, 50), userInfo);-->
-<% UserHandler.removeFromCart(new MediaInfo("0194397051223", "Fine Line", "Harry Styles", Category.LP, "Columbia", Genre.POP,
+<%UserHandler.addToCart(new MediaInfo("0194397051223", "Fine Line", "Harry Styles", Category.LP, "Columbia", Genre.POP,
         new Date(119, 11, 13), "", 494, 50), userInfo);%>
+<!-- UserHandler.removeFromCart(new MediaInfo("0194397051223", "Fine Line", "Harry Styles", Category.LP, "Columbia", Genre.POP,
+        new Date(119, 11, 13), "", 494, 50), userInfo);-->
 </html>

@@ -28,8 +28,8 @@ public class User {
     }
 
     public void addNewToCart(Media media) {
-        DbUser.insertNewBooked(media.getEan(), email);
-        cart.add(media);
+        DbUser.addBooked(media.getEan(), email);
+        addToCart(media);
     }
 
     public void addToCart(Media media) {
