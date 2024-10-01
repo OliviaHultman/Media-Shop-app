@@ -27,6 +27,24 @@ public class User {
         return DbUser.selectUserByEmail(email);
     }
 
+    public void addNewToCart(Media media) {
+        DbUser.insertNewBooked(media.getEan(), email);
+        cart.add(media);
+    }
+
+    public void addToCart(Media media) {
+        cart.add(media);
+    }
+
+    public void removeFromCart(Media media) {
+        DbUser.deleteBooked(media.getEan(), email);
+        cart.remove(media);
+    }
+
+    public void addAllToCart(ArrayList<Media> medias) {
+        cart.addAll(medias);
+    }
+
     public String getEmail() {
         return email;
     }
