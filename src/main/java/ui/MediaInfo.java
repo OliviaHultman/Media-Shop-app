@@ -1,0 +1,72 @@
+package ui;
+
+import bo.Category;
+import bo.Genre;
+
+import java.time.LocalDate;
+
+public class MediaInfo {
+    private String ean;
+    private String name;
+    private String artist;
+    private Category category;
+    private String label;
+    private Genre genre;
+    private LocalDate released;
+    private String description;
+    private int price;
+    private int nrOfCopies;
+
+    public MediaInfo(String ean, String name, String artist, Category category, String label, Genre genre, LocalDate released, String description, int price, int nrOfCopies) {
+        this.ean = ean;
+        this.name = name;
+        this.artist = artist;
+        this.category = category;
+        this.label = label;
+        this.genre = genre;
+        this.released = released;
+        this.description = description;
+        this.price = price;
+        this.nrOfCopies = nrOfCopies;
+    }
+
+    public String getEan() {
+        return ean;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getArtist() {
+        return artist;
+    }
+
+    public Category getMedia() {
+        return category;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public LocalDate getReleased() {
+        return released;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getNrOfCopies() {
+        return nrOfCopies;
+    }
+}

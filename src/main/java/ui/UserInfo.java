@@ -1,10 +1,11 @@
-package bo;
+package ui;
 
-import db.DbUser;
+import bo.Authority;
+import bo.Media;
 
 import java.util.ArrayList;
 
-public class User {
+public class UserInfo {
     private String email;
     private String firstName;
     private String lastName;
@@ -12,17 +13,13 @@ public class User {
     private Authority authority;
     private ArrayList<Media> cart;
 
-    protected User(String email, String firstName, String lastName, String password, Authority authority) {
+    public UserInfo( String email, String firstName, String lastName, String password, Authority authority) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.authority = authority;
         cart = new ArrayList<>();
-    }
-
-    public static User selectUserByEmail(String email) {
-        return DbUser.selectUserByEmail(email);
     }
 
     public String getEmail() {
