@@ -1,6 +1,7 @@
 <%@ page import="ui.MediaInfo" %>
 <%@ page import="bo.MediaHandler" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="ui.UserInfo" %><%--
   Created by IntelliJ IDEA.
   User: Olivia Hultman
   Date: 2024-10-02
@@ -20,6 +21,10 @@
 </div>
 <div class="content">
     <h1>Music shop</h1>
+    <% UserInfo user = (UserInfo) request.getSession().getAttribute("user"); %>
+    <% if (user != null) {%>
+    <%=user.getEmail()%>
+    <%}%>
     <!--
     <% ArrayList<MediaInfo> mediasInfo = MediaHandler.getMedias(); %>
     <% for (MediaInfo mediaInfo : mediasInfo) { %>
