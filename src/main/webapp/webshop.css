@@ -5,13 +5,13 @@ h1 {
 .product {
     width: 10%;
     display: inline-block;
-    background-color: beige;
+    background-color: lightgrey;
     margin: auto;
     padding: 20px 20px;
 }
 
 .menu {
-    background-color: #333;
+    background-color: black;
     overflow: hidden;
 }
 
@@ -20,15 +20,17 @@ h1 {
     text-align: center;
     padding: 14px 16px;
     color: white;
-    font-size: 16px;
+    font-size: 20px;
+    float: right;
+    height: 30px;
 }
 
 .menu_option {
-    float: left;
+
 }
 
 .cart_icon {
-    float: right;
+
 }
 
 .menu a:hover {
@@ -51,8 +53,14 @@ h1 {
 }
 
 form {
-    border: 3px solid #f1f1f1;
+    border: 3px solid lightgray;
     padding: 16px;
+}
+
+.login {
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 15%;
 }
 
 input {
@@ -65,8 +73,8 @@ input {
 }
 
 button {
-    background-color: #04AA6D;
-    color: white;
+    background-color: darkgrey;
+    color: black;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;

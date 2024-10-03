@@ -12,7 +12,7 @@
     <link href="webshop.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-  <form action="login-servlet" method="get">
+  <form action="login-servlet" method="get" class="login">
     <label for="email">
       Email
     </label>
@@ -29,7 +29,7 @@
            name="password"
            placeholder="Password" required>
 
-    <div class="wrap">
+    <div>
       <button type="submit">
         Login
       </button>
