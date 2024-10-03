@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "loginServlet", value = "/login-servlet")
+@WebServlet(name = "login", value = "/login-servlet")
 public class LoginServlet extends HttpServlet {
     private String message;
 
@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
         if (userInfo != null) {
             session.setAttribute("user", userInfo);
         }
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        request.getRequestDispatcher("webshop.jsp").forward(request, response);
     }
 
     public void destroy() {

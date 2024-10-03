@@ -1,29 +1,29 @@
 package ui;
 
 import bo.MediaHandler;
-import bo.UserHandler;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
-@WebServlet(name = "productServlet", value = "/")
-public class ProductServlet extends HttpServlet {
+@WebServlet(name = "webshop", value = "/webshop")
+public class WebshopServlet extends HttpServlet {
     private String message;
 
     public void init() {
         message = "Hello World!";
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         ArrayList<MediaInfo> mediasInfo = MediaHandler.getMedias();
-        response.setContentType("text/html");
-        PrintWriter writer = response.getWriter();
-        writer.println("Hello");
+        HttpSession session = request.getSession();
+        session.setAttribute("medias", mediasInfo);
+        request.getRequestDispatcher("webshop.jsp").forward(request, response);
     }
 
     public void destroy() {
