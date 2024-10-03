@@ -31,9 +31,14 @@
         <%= media.getName() %><br>
         <%= media.getArtist()%><br>
         <%= media.getPrice() + ":-"%><br>
-        <button class="add">Add to cart +</button>
+        <form method="post" action="webshop">
+            <input type="hidden" name="ean" value="<%= media.getEan()%>">
+            <input type="hidden" name="command" value="addToCart">
+        <button class="add" type="submit">Add to cart +</button>
+        </form>
     </div>
     <% } %>
+
 </div>
 </body>
 </html>
