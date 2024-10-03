@@ -23,8 +23,8 @@ public class User {
         ordered = new ArrayList<>();
     }
 
-    public static User getUser(String email) {
-        return DbUser.selectUserByEmail(email);
+    public static User getUser(String email, String password) {
+        return DbUser.selectUser(email, password);
     }
 
     public void addNewToCart(Media media) {

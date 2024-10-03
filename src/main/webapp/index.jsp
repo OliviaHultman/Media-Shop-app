@@ -1,28 +1,36 @@
-<%@ page import="ui.UserInfo" %>
 <%@ page import="ui.MediaInfo" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="bo.*" %>
-<%@ page import="java.sql.Date" %>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
+<%@ page import="bo.MediaHandler" %>
+<%@ page import="java.util.ArrayList" %><%--
+  Created by IntelliJ IDEA.
+  User: Olivia Hultman
+  Date: 2024-10-02
+  Time: 13:10
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>JSP - Hello World</title>
+  <title>Home</title>
+  <link href="webshop.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<h1><%= "Hello World!!" %></h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
+<div class="menu">
+    <a href="login.jsp" class="menu_option">Sign in</a>
+    <a href="cart.jsp" class="cart_icon"><img src="img/cart.png"></a>
+</div>
+<div class="content">
+    <h1>Music shop</h1>
+    <!--
+    <% ArrayList<MediaInfo> mediasInfo = MediaHandler.getMedias(); %>
+    <% for (MediaInfo mediaInfo : mediasInfo) { %>
+    <div class="product">
+        <%= mediaInfo.getName() %><br>
+        <%= mediaInfo.getArtist()%><br>
+        <%= mediaInfo.getPrice() + ":-"%><br>
+        <button class="add">Add to cart +</button>
+    </div>
+    <% } %>
+    -->
+</div>
 </body>
-<%UserInfo userInfo = UserHandler.getUser("oliviahu@kth.se"); %>
-<%=userInfo.getFirstName()%>
-<%=userInfo.getLastName()%>
-<% ArrayList<MediaInfo> mediasInfo = MediaHandler.getUserMedias("oliviahu@kth.se");%>
-<% for (MediaInfo mediaInfo : mediasInfo) {%>
-  <%=mediaInfo.getName()%>
-<%}%>
-<%UserHandler.addToCart(new MediaInfo("0194397051223", "Fine Line", "Harry Styles", Category.LP, "Columbia", Genre.POP,
-        new Date(119, 11, 13), "", 494, 50), userInfo);%>
-<!-- UserHandler.removeFromCart(new MediaInfo("0194397051223", "Fine Line", "Harry Styles", Category.LP, "Columbia", Genre.POP,
-        new Date(119, 11, 13), "", 494, 50), userInfo);-->
 </html>

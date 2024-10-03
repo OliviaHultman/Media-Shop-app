@@ -3,6 +3,7 @@ package db;
 import bo.*;
 
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class DbMediaOrder extends MediaOrder {
@@ -16,13 +17,16 @@ public class DbMediaOrder extends MediaOrder {
         try { 
             PreparedStatement insertMediaOrder = DbManager.getConnection().prepareStatement(INSERT_MEDIA_ORDER);
             insertMediaOrder.setString(2, mediaOrder.getUser().getEmail());
+            String ean;
             for (MediaOrderItem item : mediaOrder.getItems()) {
-                insertMediaOrder.setString(1, item.getMedia().getEan());
+                ean = item.getMedia().getEan();
+                insertMediaOrder.setString(1, ean);
                 insertMediaOrder.setString(3, String.valueOf(item.getNrOfCopies()));
                 insertMediaOrder.executeUpdate();
+                DbMedia.updateNrOfCopies(ean);
             }
         }
-        catch (Exception exception) {
+        catch (SQLException exception) {
             exception.printStackTrace();
         }
     }

@@ -4,10 +4,15 @@ import ui.MediaInfo;
 import ui.UserInfo;
 
 public class UserHandler {
-    public static UserInfo getUser(String email) {
-        User user = User.getUser(email);
-        return new UserInfo(user.getEmail(), user.getFirstName(), user.getLastName(), user.getPassword(),
-                user.getAuthority());
+    public static UserInfo getUser(String email, String password) {
+        User user = User.getUser(email, password);
+        if (user != null) {
+            return new UserInfo(user.getEmail(), user.getFirstName(), user.getLastName(), user.getPassword(),
+                    user.getAuthority());
+        }
+        else {
+            return null;
+        }
     }
 
     public static void addToCart (MediaInfo chosenMediaInfo, UserInfo userInfo) {

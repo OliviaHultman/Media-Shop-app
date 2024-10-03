@@ -7,22 +7,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DbUser extends User {
-    final static String SELECT_USER_BY_EMAIL = "SELECT User.* FROM User WHERE User.email = ?";
-    final static String SELECT_BOOKED = "SELECT Booked.NrOfCopies FROM Booked WHERE WHERE Booked.media = ? AND Booked.user = ?";
+    final static String INSERT_USER = "INSERT INTO User VALUES (?, ?, ?, ?, ?)";
+    final static String UPDATE_USER = "UPDATE User SET User.email = ?, User.firstName = ?, User.lastName = ?, User.password = ?, User.authority = ? WHERE User.email = ?";
+    final static String SELECT_USER = "SELECT User.* FROM User WHERE User.email = ? AND User.password = ?";
+    final static String SELECT_BOOKED = "SELECT Booked.nrOfCopies FROM Booked WHERE WHERE Booked.media = ? AND Booked.user = ?";
     final static String INSERT_BOOKED = "INSERT INTO Booked VALUES (?, ?, 1)";
-    final static String UPDATE_BOOKED = "UPDATE Booked SET Booked.NrOfCopies = ? WHERE Booked.media = ? AND Booked.user = ?";
+    final static String UPDATE_BOOKED = "UPDATE Booked SET Booked.nrOfCopies = ? WHERE Booked.media = ? AND Booked.user = ?";
     final static String DELETE_BOOKED = "DELETE FROM Booked WHERE Booked.media = ? AND Booked.user = ?";
 
     private DbUser(String email, String firstName, String lastName, String password, Authority authority) {
         super(email, firstName, lastName, password, authority);
     }
 
-    public static DbUser selectUserByEmail(String email) {
+    public static DbUser selectUser(String email, String password) {
         ResultSet result = null;
         try {
-            PreparedStatement selectUserByEmail = DbManager.getConnection().prepareStatement(SELECT_USER_BY_EMAIL);
-            selectUserByEmail.setString(1, email);
-            result = selectUserByEmail.executeQuery();
+            PreparedStatement selectUser = DbManager.getConnection().prepareStatement(SELECT_USER);
+            selectUser.setString(1, email);
+            selectUser.setString(2, password);
+            result = selectUser.executeQuery();
              if (result.next()) {
                  return new DbUser(email, result.getString("firstName"),
                          result.getString("lastName"), result.getString("password"),
@@ -41,6 +44,37 @@ public class DbUser extends User {
             }
         }
         return null;
+    }
+
+    public static void insertUser(User user) {
+        try {
+            PreparedStatement insertUser = DbManager.getConnection().prepareStatement(INSERT_USER);
+            insertUser.setString(1, user.getEmail());
+            insertUser.setString(2, user.getFirstName());
+            insertUser.setString(3, user.getLastName());
+            insertUser.setString(4, user.getPassword());
+            insertUser.setString(5, String.valueOf(user.getAuthority()));
+            insertUser.executeUpdate();
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public static void updateUser(User user, String oldEmail) {
+        try {
+            PreparedStatement updateUser = DbManager.getConnection().prepareStatement(UPDATE_USER);
+            updateUser.setString(1, user.getEmail());
+            updateUser.setString(2, user.getFirstName());
+            updateUser.setString(3, user.getLastName());
+            updateUser.setString(4, user.getPassword());
+            updateUser.setString(5, String.valueOf(user.getAuthority()));
+            updateUser.setString(6, oldEmail);
+            updateUser.executeUpdate();
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
     }
 
     public static void addBooked(String media, String user) {
