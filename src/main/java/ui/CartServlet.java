@@ -1,7 +1,6 @@
 package ui;
 
 import bo.MediaHandler;
-import bo.UserHandler;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -20,13 +19,9 @@ public class CartServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
-        ArrayList<CartItem> cart = (ArrayList<CartItem>) session.getAttribute("cart");
-        ArrayList<String> eans = new ArrayList<>();
-        for (CartItem cartItem : cart) {
-            eans.add(cartItem.getEan());
-        }
-        ArrayList<MediaInfo> medias = MediaHandler.getCartMedias(eans);
-        request.setAttribute("medias", medias);
+        ArrayList<CartItemInfo> cart = (ArrayList<CartItemInfo>) session.getAttribute("cart");
+        ArrayList<OrderItemInfo> order = MediaHandler.getCartMedias(cart);
+        request.setAttribute("order", order);
         request.getRequestDispatcher("cart.jsp").forward(request, response);
     }
 

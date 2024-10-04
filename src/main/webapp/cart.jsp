@@ -1,6 +1,8 @@
 <%@ page import="ui.UserInfo" %>
 <%@ page import="ui.MediaInfo" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="ui.OrderInfo" %>
+<%@ page import="ui.OrderItemInfo" %><%--
   Created by IntelliJ IDEA.
   User: Olivia Hultman
   Date: 2024-10-02
@@ -15,13 +17,13 @@
 </head>
 <header>
     <div class="menu">
-        <a href="/webshop" class="menu_option">Shop</a>
-        <a href="/cart"><img src="img/cart.png"></a>
+        <a href="/webshop" class="menu_left">Shop</a>
+        <a href="/cart" class="menu_right"><img src="img/cart.png"></a>
         <% UserInfo user = (UserInfo) request.getSession().getAttribute("user"); %>
         <% if (user == null) {%>
-        <a href="login.jsp">Sign in</a>
+        <a href="login.jsp" class="menu_right">Sign in</a>
         <%} else {%>
-        <a href="profile.jsp"><%=user.getFirstName() + " " + user.getLastName()%></a>
+        <a href="profile.jsp" class="menu_right"><%=user.getFirstName() + " " + user.getLastName()%></a>
         <%}%>
     </div>
 </header>
@@ -29,18 +31,27 @@
 
 <div class="content">
     <h1>Cart</h1>
-    <% ArrayList<MediaInfo> medias = (ArrayList<MediaInfo>) request.getAttribute("medias"); %>
+    <% ArrayList<OrderItemInfo> order = (ArrayList<OrderItemInfo>) request.getAttribute("order"); %>
     <% int totalPrice = 0; %>
-    <% for (MediaInfo media : medias) { %>
+    <% for (OrderItemInfo item : order) { %>
     <div class="product">
-        <%= media.getName() %><br>
-        <%= media.getArtist()%><br>
-        <%= media.getPrice() + ":-"%><br>
-        <% totalPrice += media.getPrice(); %>
+        <%= item.getMedia().getName() %><br>
+        <%= item.getMedia().getArtist()%><br>
+        <%= item.getMedia().getPrice() + ":-"%><br>
+        <% totalPrice += (item.getMedia().getPrice() * item.getNrOfCopies()); %>
     </div>
     <% } %>
     <h2><%= totalPrice + ":-"%></h2>
-    <button class="checkout">Checkout</button>
+    <% String action;%>
+    <% if (user == null) {%>
+        <% action = "login.jsp";%>
+    <%} else {%>
+    <% action = "/checkout";%>
+    <%}%>
+    <form action=<%=action%> method="post">
+        <input type="hidden" name="order" value=<%=order%>>
+    <button class="checkout" type="submit" >Checkout</button>
+    </form>
 </div>
 </body>
 </html>

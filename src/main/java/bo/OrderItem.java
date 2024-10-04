@@ -1,12 +1,10 @@
 package bo;
 
-import java.util.ArrayList;
-
-public class MediaOrderItem {
+public class OrderItem {
     private Media media;
     private int nrOfCopies;
 
-    protected MediaOrderItem(Media media, int nrOfCopies) {
+    protected OrderItem(Media media, int nrOfCopies) {
         this.media = media;
         this.nrOfCopies = nrOfCopies;
     }

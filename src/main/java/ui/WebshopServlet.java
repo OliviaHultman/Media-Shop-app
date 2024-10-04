@@ -1,6 +1,7 @@
 package ui;
 
 import bo.MediaHandler;
+import bo.UserHandler;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -28,44 +29,12 @@ public class WebshopServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
         if (session.getAttribute("cart") == null) {
-            session.setAttribute("cart", new ArrayList<CartItem>());
+            session.setAttribute("cart", new ArrayList<CartItemInfo>());
         }
         getWebshop(request, response);
     }
 
-    private CartItem findCartItem(ArrayList<CartItem> cart, String ean) {
-        for (CartItem cartItem : cart) {
-            if (cartItem.getEan().equals(ean)) {
-                return cartItem;
-            }
-        }
-        return null;
-    }
-
-    private void addToCart(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException, ServletException {
-        ArrayList<CartItem> cart = (ArrayList<CartItem>) session.getAttribute("cart");
-        String ean = request.getParameter("ean");
-        CartItem cartItem = findCartItem(cart, ean);
-        if (cartItem == null) {
-            cart.add(new CartItem(ean));
-        }
-        else {
-            cartItem.incrementNrOfCopies();
-        }
-        session.setAttribute("cart", cart);
-    }
-
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        HttpSession session = request.getSession();
-        String command = request.getParameter("command");
-        if (command != null) {
-            switch (command) {
-                case "addToCart":
-                    addToCart(request, response, session);
-                    break;
-                default:
-            }
-        }
         getWebshop(request, response);
     }
 

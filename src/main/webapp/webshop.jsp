@@ -17,19 +17,19 @@
 </head>
 <header>
     <div class="menu">
-        <a href="/webshop" class="menu_option">Shop</a>
-        <a href="/cart"><img src="img/cart.png"></a>
+        <a href="/webshop" class="menu_left">Shop</a>
+        <a href="/cart" class="menu_right"><img src="img/cart.png"></a>
         <% UserInfo user = (UserInfo) request.getSession().getAttribute("user"); %>
         <% if (user == null) {%>
-        <a href="login.jsp">Sign in</a>
+        <a href="login.jsp" class="menu_right">Sign in</a>
         <%} else {%>
-        <a href="profile.jsp"><%=user.getFirstName() + " " + user.getLastName()%></a>
+        <a href="profile.jsp" class="menu_right"><%=user.getFirstName() + " " + user.getLastName()%></a>
         <%}%>
     </div>
 </header>
 <body>
 <div class="content">
-    <h1>Music shop</h1>
+    <h1>Shop</h1>
     <% ArrayList<MediaInfo> medias = (ArrayList<MediaInfo>) request.getAttribute("medias"); %>
     <% for (MediaInfo media : medias) { %>
     <div class="product">
@@ -45,9 +45,8 @@
         <%} else {%>
         <%="In stock"%>
         <%}%>
-            <form method="post" action="webshop">
+            <form method="post" action="add-to-cart">
                 <input type="hidden" name="ean" value="<%= media.getEan()%>">
-                <input type="hidden" name="command" value="addToCart">
                 <button class="add" type="submit">Add to cart +</button>
             </form>
 

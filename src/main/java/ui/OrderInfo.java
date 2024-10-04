@@ -1,14 +1,16 @@
-package bo;
+package ui;
+
+import bo.Status;
 
 import java.util.ArrayList;
 
-public class MediaOrder {
+public class OrderInfo {
     private String orderNr;
-    private ArrayList<MediaOrderItem> items;
-    private User user;
+    private ArrayList<OrderItemInfo> items;
+    private UserInfo user;
     private Status status;
 
-    public MediaOrder(String orderNr, ArrayList<MediaOrderItem> items, User user, Status status) {
+    protected OrderInfo(String orderNr, ArrayList<OrderItemInfo> items, UserInfo user, Status status) {
         this.orderNr = orderNr;
         this.items = items;
         this.user = user;
@@ -19,11 +21,11 @@ public class MediaOrder {
         return orderNr;
     }
 
-    public ArrayList<MediaOrderItem> getItems() {
+    public ArrayList<OrderItemInfo> getItems() {
         return items;
     }
 
-    public User getUser() {
+    public UserInfo getUser() {
         return user;
     }
 

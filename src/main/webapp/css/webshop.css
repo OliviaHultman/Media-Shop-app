@@ -32,16 +32,15 @@ h2 {
     padding: 14px 16px;
     color: white;
     font-size: 20px;
-    float: right;
     height: 30px;
 }
 
-.menu_option {
+.menu_left {
     float: left;
 }
 
-.cart_icon {
-
+.menu_right {
+    float: right;
 }
 
 .menu a:hover {
