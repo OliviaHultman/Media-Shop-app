@@ -1,5 +1,7 @@
 package bo;
 
+import db.DbOrder;
+
 import java.util.ArrayList;
 
 public class Order {
@@ -13,6 +15,15 @@ public class Order {
         this.items = items;
         this.user = user;
         this.status = status;
+    }
+
+    public Order(ArrayList<OrderItem> items, User user) {
+        this.items = items;
+        this.user = user;
+    }
+
+    public static void createOrder(ArrayList<EanItem> eanItems, String email) {
+        DbOrder.insertMediaOrder(eanItems, email);
     }
 
     public String getOrderNr() {

@@ -13,7 +13,7 @@ public class DbMedia extends Media {
     final static String SELECT_MEDIA_BY_USER = "SELECT Media.* FROM Booked LEFT JOIN Media ON Booked.media = Media.ean WHERE Booked.user = ?",
             SELECT_MEDIA = "SELECT Media.* FROM Media",
             SELECT_MEDIA_BY_EAN = "SELECT Media.* FROM Media WHERE Media.ean = ?",
-            UPDATE_NR_OF_COPIES = "UPDATE Media SET Media.nrOfCopies = Media.nrOfCopies - 1 WHERE Media.ean = ?";
+            UPDATE_NR_OF_COPIES = "UPDATE Media SET Media.nrOfCopies = Media.nrOfCopies - ? WHERE Media.ean = ?";
 
     private DbMedia(String ean, String name, String artist, Category category, String label, Genre genre, Date released, String description, int price, int nrOfCopies) {
         super(ean, name, artist, category, label, genre, released, description, price, nrOfCopies);
@@ -103,10 +103,11 @@ public class DbMedia extends Media {
         return null;
     }
 
-    public static void updateNrOfCopies(String media) {
+    public static void updateNrOfCopies(String media, int nrOfCopies) {
         try {
             PreparedStatement updateNrOfCopies = DbManager.getConnection().prepareStatement(UPDATE_NR_OF_COPIES);
-            updateNrOfCopies.setString(1, media);
+            updateNrOfCopies.setInt(1, nrOfCopies);
+            updateNrOfCopies.setString(2, media);
             updateNrOfCopies.executeUpdate();
         }
         catch (SQLException exception) {

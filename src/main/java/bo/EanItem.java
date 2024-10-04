@@ -1,12 +1,17 @@
-package ui;
+package bo;
 
-public class CartItemInfo {
+public class EanItem {
     private String ean;
     private int nrOfCopies;
 
-    protected CartItemInfo(String ean) {
+    protected EanItem(String ean) {
         this.ean = ean;
         this.nrOfCopies = 1;
+    }
+
+    public EanItem(String ean, int nrOfCopies) {
+        this.ean = ean;
+        this.nrOfCopies = nrOfCopies;
     }
 
     public String getEan() {

@@ -1,7 +1,6 @@
 package ui;
 
 import bo.MediaHandler;
-import bo.UserHandler;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -29,7 +28,7 @@ public class WebshopServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
         if (session.getAttribute("cart") == null) {
-            session.setAttribute("cart", new ArrayList<CartItemInfo>());
+            session.setAttribute("cart", new ArrayList<EanItemInfo>());
         }
         getWebshop(request, response);
     }

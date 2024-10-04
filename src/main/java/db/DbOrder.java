@@ -13,17 +13,16 @@ public class DbOrder extends Order {
         super(orderNr, items, user, status);
     }
 
-    public static void insertMediaOrder(Order order) {
+    public static void insertMediaOrder(ArrayList<EanItem> eanItems, String email) {
         try { 
             PreparedStatement insertMediaOrder = DbManager.getConnection().prepareStatement(INSERT_MEDIA_ORDER);
-            insertMediaOrder.setString(2, order.getUser().getEmail());
+            insertMediaOrder.setString(2, email);
             String ean;
-            for (OrderItem item : order.getItems()) {
-                ean = item.getMedia().getEan();
-                insertMediaOrder.setString(1, ean);
-                insertMediaOrder.setString(3, String.valueOf(item.getNrOfCopies()));
+            for (EanItem eanItem : eanItems) {
+                insertMediaOrder.setString(1, eanItem.getEan());
+                insertMediaOrder.setString(3, String.valueOf(eanItem.getNrOfCopies()));
                 insertMediaOrder.executeUpdate();
-                DbMedia.updateNrOfCopies(ean);
+                DbMedia.updateNrOfCopies(eanItem.getEan(), eanItem.getNrOfCopies());
             }
         }
         catch (SQLException exception) {

@@ -1,6 +1,5 @@
 package ui;
 
-import bo.UserHandler;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -18,10 +17,10 @@ public class AddToCartServlet extends HttpServlet {
 
     }
 
-    private CartItemInfo findCartItem(ArrayList<CartItemInfo> cart, String ean) {
-        for (CartItemInfo cartItemInfo : cart) {
-            if (cartItemInfo.getEan().equals(ean)) {
-                return cartItemInfo;
+    private EanItemInfo findCartItem(ArrayList<EanItemInfo> cart, String ean) {
+        for (EanItemInfo eanItemInfo : cart) {
+            if (eanItemInfo.getEan().equals(ean)) {
+                return eanItemInfo;
             }
         }
         return null;
@@ -29,14 +28,14 @@ public class AddToCartServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
-        ArrayList<CartItemInfo> cart = (ArrayList<CartItemInfo>) session.getAttribute("cart");
+        ArrayList<EanItemInfo> cart = (ArrayList<EanItemInfo>) session.getAttribute("cart");
         String ean = request.getParameter("ean");
-        CartItemInfo cartItemInfo = findCartItem(cart, ean);
-        if (cartItemInfo == null) {
-            cart.add(new CartItemInfo(ean));
+        EanItemInfo eanItemInfo = findCartItem(cart, ean);
+        if (eanItemInfo == null) {
+            cart.add(new EanItemInfo(ean));
         }
         else {
-            cartItemInfo.incrementNrOfCopies();
+            eanItemInfo.incrementNrOfCopies();
         }
         session.setAttribute("cart", cart);
         response.setContentType("text/html");

@@ -17,6 +17,11 @@ public class OrderInfo {
         this.status = status;
     }
 
+    public OrderInfo(ArrayList<OrderItemInfo> items, UserInfo user) {
+        this.items = items;
+        this.user = user;
+    }
+
     public String getOrderNr() {
         return orderNr;
     }
