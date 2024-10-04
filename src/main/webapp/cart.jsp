@@ -42,16 +42,15 @@
     </div>
     <% } %>
     <h2><%= totalPrice + ":-"%></h2>
-    <% String action;%>
-    <% if (user == null) {%>
-        <% action = "login.jsp?return=/checkout";%>
-    <%} else {%>
-    <% action = "/checkout";%>
+    <% if (!order.isEmpty()) {%>
+        <% String link;%>
+        <% if (user == null) {%>
+            <% link = "login.jsp?return=/checkout";%>
+        <%} else {%>
+        <% link = "/checkout";%>
+        <%}%>
+        <a href=<%=link%>><button class="checkout">Checkout</button></a>
     <%}%>
-    <form action=<%=action%> method="post">
-        <input type="hidden" name="order" value=<%=order%>>
-    <button class="checkout" type="submit" >Checkout</button>
-    </form>
 </div>
 </body>
 </html>

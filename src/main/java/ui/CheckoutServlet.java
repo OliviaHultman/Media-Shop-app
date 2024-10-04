@@ -16,6 +16,10 @@ public class CheckoutServlet extends HttpServlet {
     public void init() {
     }
 
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        request.getRequestDispatcher("confirmation.jsp").forward(request, response);
+    }
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         request.getRequestDispatcher("confirmation.jsp").forward(request, response);

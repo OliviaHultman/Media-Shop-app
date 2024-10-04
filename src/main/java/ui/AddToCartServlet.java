@@ -39,7 +39,8 @@ public class AddToCartServlet extends HttpServlet {
             cartItemInfo.incrementNrOfCopies();
         }
         session.setAttribute("cart", cart);
-        request.getRequestDispatcher("/webshop").forward(request, response);
+        response.setContentType("text/html");
+        response.getWriter().println("<meta http-equiv=\"Refresh\" content=\"0; URL=/webshop\">");
     }
 
     public void destroy() {
