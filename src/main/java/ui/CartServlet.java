@@ -20,7 +20,12 @@ public class CartServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
-        ArrayList<MediaInfo> medias = MediaHandler.getCartMedias((ArrayList<String>) session.getAttribute("cart"));
+        ArrayList<CartItem> cart = (ArrayList<CartItem>) session.getAttribute("cart");
+        ArrayList<String> eans = new ArrayList<>();
+        for (CartItem cartItem : cart) {
+            eans.add(cartItem.getEan());
+        }
+        ArrayList<MediaInfo> medias = MediaHandler.getCartMedias(eans);
         request.setAttribute("medias", medias);
         request.getRequestDispatcher("cart.jsp").forward(request, response);
     }

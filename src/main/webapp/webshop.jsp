@@ -13,18 +13,21 @@
 <html>
 <head>
   <title>Shop</title>
-  <link href="webshop.css" rel="stylesheet" type="text/css">
+  <link href="css/webshop.css" rel="stylesheet" type="text/css">
 </head>
+<header>
+    <div class="menu">
+        <a href="/webshop" class="menu_option">Shop</a>
+        <a href="/cart"><img src="img/cart.png"></a>
+        <% UserInfo user = (UserInfo) request.getSession().getAttribute("user"); %>
+        <% if (user == null) {%>
+        <a href="login.jsp">Sign in</a>
+        <%} else {%>
+        <a href="profile.jsp"><%=user.getFirstName() + " " + user.getLastName()%></a>
+        <%}%>
+    </div>
+</header>
 <body>
-<div class="menu">
-    <a href="/cart"><img src="img/cart.png"></a>
-    <% UserInfo user = (UserInfo) request.getSession().getAttribute("user"); %>
-    <% if (user == null) {%>
-    <a href="login.jsp">Sign in</a>
-    <%} else {%>
-    <a href="profile.jsp"><%=user.getFirstName() + " " + user.getLastName()%></a>
-    <%}%>
-</div>
 <div class="content">
     <h1>Music shop</h1>
     <% ArrayList<MediaInfo> medias = (ArrayList<MediaInfo>) request.getAttribute("medias"); %>
@@ -33,11 +36,22 @@
         <%= media.getName() %><br>
         <%= media.getArtist()%><br>
         <%= media.getPrice() + ":-"%><br>
-        <form method="post" action="webshop">
-            <input type="hidden" name="ean" value="<%= media.getEan()%>">
-            <input type="hidden" name="command" value="addToCart">
-        <button class="add" type="submit">Add to cart +</button>
-        </form>
+        <% int nrOfCopies = media.getNrOfCopies(); %>
+        <% if (nrOfCopies == 0) { %>
+            <%="Not in stock"%>
+        <%} else {%>
+        <%if (nrOfCopies <= 5) {%>
+        <%="Few left in stock"%>
+        <%} else {%>
+        <%="In stock"%>
+        <%}%>
+            <form method="post" action="webshop">
+                <input type="hidden" name="ean" value="<%= media.getEan()%>">
+                <input type="hidden" name="command" value="addToCart">
+                <button class="add" type="submit">Add to cart +</button>
+            </form>
+
+        <%} %>
     </div>
     <% } %>
 

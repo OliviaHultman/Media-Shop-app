@@ -11,18 +11,22 @@
 <html>
 <head>
     <title>Cart</title>
-    <link href="webshop.css" rel="stylesheet" type="text/css">
+    <link href="css/webshop.css" rel="stylesheet" type="text/css">
 </head>
+<header>
+    <div class="menu">
+        <a href="/webshop" class="menu_option">Shop</a>
+        <a href="/cart"><img src="img/cart.png"></a>
+        <% UserInfo user = (UserInfo) request.getSession().getAttribute("user"); %>
+        <% if (user == null) {%>
+        <a href="login.jsp">Sign in</a>
+        <%} else {%>
+        <a href="profile.jsp"><%=user.getFirstName() + " " + user.getLastName()%></a>
+        <%}%>
+    </div>
+</header>
 <body>
-<div class="menu">
-    <a href="/cart"><img src="img/cart.png"></a>
-    <% UserInfo user = (UserInfo) request.getSession().getAttribute("user"); %>
-    <% if (user == null) {%>
-    <a href="login.jsp">Sign in</a>
-    <%} else {%>
-    <a href="profile.jsp"><%=user.getFirstName() + " " + user.getLastName()%></a>
-    <%}%>
-</div>
+
 <div class="content">
     <h1>Cart</h1>
     <% ArrayList<MediaInfo> medias = (ArrayList<MediaInfo>) request.getAttribute("medias"); %>
@@ -35,7 +39,8 @@
         <% totalPrice += media.getPrice(); %>
     </div>
     <% } %>
-    <h1><%= totalPrice + ":-"%></h1>
+    <h2><%= totalPrice + ":-"%></h2>
+    <button class="checkout">Checkout</button>
 </div>
 </body>
 </html>

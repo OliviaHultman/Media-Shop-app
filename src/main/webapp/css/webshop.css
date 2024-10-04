@@ -2,12 +2,23 @@ h1 {
     text-align: center;
 }
 
+h2 {
+    text-align: right;
+}
+
 .product {
     width: 10%;
     display: inline-block;
-    background-color: lightgrey;
+    border: 3px solid lightgray;
     margin: auto;
     padding: 20px 20px;
+    height: 120px;
+    overflow: hidden;
+}
+
+.content {
+    width: 75%;
+    margin: auto;
 }
 
 .menu {
@@ -26,7 +37,7 @@ h1 {
 }
 
 .menu_option {
-
+    float: left;
 }
 
 .cart_icon {
@@ -52,15 +63,12 @@ h1 {
     background-color: #ddd;
 }
 
-form {
-    border: 3px solid lightgray;
-    padding: 16px;
-}
-
 .login {
     width: 400px;
     margin: 0 auto;
     margin-top: 15%;
+    border: 3px solid lightgray;
+    padding: 16px;
 }
 
 input {
@@ -84,5 +92,10 @@ button {
 
 button:hover {
     opacity: 0.8;
+}
+
+.checkout {
+    float: right;
+    width: 120px;
 }
 
