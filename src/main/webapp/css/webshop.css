@@ -6,6 +6,10 @@ h2 {
     text-align: right;
 }
 
+p {
+    text-align: center;
+}
+
 .product {
     width: 10%;
     display: inline-block;

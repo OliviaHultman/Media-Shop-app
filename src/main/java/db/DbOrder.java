@@ -2,6 +2,7 @@ package db;
 
 import bo.*;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,19 +15,34 @@ public class DbOrder extends Order {
     }
 
     public static void insertMediaOrder(ArrayList<EanItem> eanItems, String email) {
-        try { 
-            PreparedStatement insertMediaOrder = DbManager.getConnection().prepareStatement(INSERT_MEDIA_ORDER);
+        Connection connection = DbManager.getConnection();
+        try {
+            PreparedStatement insertMediaOrder = connection.prepareStatement(INSERT_MEDIA_ORDER);
             insertMediaOrder.setString(2, email);
-            String ean;
+            connection.setAutoCommit(false);
             for (EanItem eanItem : eanItems) {
                 insertMediaOrder.setString(1, eanItem.getEan());
                 insertMediaOrder.setString(3, String.valueOf(eanItem.getNrOfCopies()));
                 insertMediaOrder.executeUpdate();
                 DbMedia.updateNrOfCopies(eanItem.getEan(), eanItem.getNrOfCopies());
             }
+            connection.commit();
         }
         catch (SQLException exception) {
-            exception.printStackTrace();
+            try {
+                connection.rollback();
+            }
+            catch (SQLException exception2) {
+
+            }
+        }
+        finally {
+            try {
+                connection.setAutoCommit(true);
+            }
+            catch (SQLException exception) {
+                exception.printStackTrace();
+            }
         }
     }
 }
