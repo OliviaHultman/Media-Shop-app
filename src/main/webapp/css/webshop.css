@@ -66,12 +66,22 @@ p {
     background-color: #ddd;
 }
 
-.login {
+.account {
     width: 400px;
     margin: 0 auto;
     margin-top: 15%;
     border: 3px solid lightgray;
     padding: 16px;
+}
+
+.account a {
+    float: right;
+    color: black;
+    padding: 10px;
+}
+
+.warning {
+    color: red;
 }
 
 input {

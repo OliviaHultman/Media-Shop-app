@@ -23,8 +23,19 @@ public class User {
         ordered = new ArrayList<>();
     }
 
+    protected User(String email, String firstName, String lastName, String password) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+    }
+
     public static User getUser(String email, String password) {
         return DbUser.selectUser(email, password);
+    }
+
+    public void createUser() {
+        DbUser.insertUser(this);
     }
 
     public void addNewToCart(Media media) {

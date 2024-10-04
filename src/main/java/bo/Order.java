@@ -10,7 +10,7 @@ public class Order {
     private User user;
     private Status status;
 
-    public Order(String orderNr, ArrayList<OrderItem> items, User user, Status status) {
+    protected Order(String orderNr, ArrayList<OrderItem> items, User user, Status status) {
         this.orderNr = orderNr;
         this.items = items;
         this.user = user;

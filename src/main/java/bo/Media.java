@@ -17,7 +17,7 @@ public class Media {
     private int price;
     private int nrOfCopies;
 
-    public Media(String ean, String name, String artist, Category category, String label, Genre genre, Date released, String description, int price, int nrOfCopies) {
+    protected Media(String ean, String name, String artist, Category category, String label, Genre genre, Date released, String description, int price, int nrOfCopies) {
         this.ean = ean;
         this.name = name;
         this.artist = artist;

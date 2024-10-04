@@ -15,6 +15,10 @@ public class UserHandler {
         }
     }
 
+    public static void createUser(UserInfo userInfo) {
+        new User(userInfo.getEmail(), userInfo.getFirstName(), userInfo.getLastName(), userInfo.getPassword()).createUser();
+    }
+
     public static void addToCart (MediaInfo chosenMediaInfo, UserInfo userInfo) {
         User user = new User(userInfo.getEmail(), userInfo.getFirstName(), userInfo.getLastName(),
                 userInfo.getPassword(), userInfo.getAuthority());
