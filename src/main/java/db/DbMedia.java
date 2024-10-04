@@ -55,7 +55,19 @@ public class DbMedia extends Media {
         ResultSet result = null;
         try {
             PreparedStatement selectMedia = DbManager.getConnection().prepareStatement(SELECT_MEDIA_BY_EAN);
-            return createMedias(selectMedia.executeQuery());
+            ArrayList<DbMedia> medias = new ArrayList<>();
+            for (String ean : eans) {
+                selectMedia.setString(1, ean);
+                result = selectMedia.executeQuery();
+                if (result.next()) {
+                    medias.add(new DbMedia(result.getString("ean"), result.getString("name"),
+                            result.getString("artist"), Category.valueOf(result.getString("category")),
+                            result.getString("label"), Genre.valueOf(result.getString("genre")),
+                            result.getDate("released"), result.getString("description"),
+                            result.getInt("price"), result.getInt("nrOfCopies")));
+                }
+            }
+            return medias;
         } catch (SQLException exception) {
             exception.printStackTrace();
         }

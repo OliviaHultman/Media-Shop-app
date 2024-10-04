@@ -38,6 +38,10 @@ public class Media {
         return DbMedia.selectMediaByUser(user);
     }
 
+    public static ArrayList<DbMedia> getCartMedias(ArrayList<String> eans) {
+        return DbMedia.selectMediaByEan(eans);
+    }
+
     public String getEan() {
         return ean;
     }

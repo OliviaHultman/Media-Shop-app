@@ -1,4 +1,6 @@
-<%@ page import="ui.UserInfo" %><%--
+<%@ page import="ui.UserInfo" %>
+<%@ page import="ui.MediaInfo" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: Olivia Hultman
   Date: 2024-10-02
@@ -13,7 +15,7 @@
 </head>
 <body>
 <div class="menu">
-    <a href="cart.jsp"><img src="img/cart.png"></a>
+    <a href="/cart"><img src="img/cart.png"></a>
     <% UserInfo user = (UserInfo) request.getSession().getAttribute("user"); %>
     <% if (user == null) {%>
     <a href="login.jsp">Sign in</a>
@@ -21,6 +23,19 @@
     <a href="profile.jsp"><%=user.getFirstName() + " " + user.getLastName()%></a>
     <%}%>
 </div>
-
+<div class="content">
+    <h1>Cart</h1>
+    <% ArrayList<MediaInfo> medias = (ArrayList<MediaInfo>) request.getAttribute("medias"); %>
+    <% int totalPrice = 0; %>
+    <% for (MediaInfo media : medias) { %>
+    <div class="product">
+        <%= media.getName() %><br>
+        <%= media.getArtist()%><br>
+        <%= media.getPrice() + ":-"%><br>
+        <% totalPrice += media.getPrice(); %>
+    </div>
+    <% } %>
+    <h1><%= totalPrice + ":-"%></h1>
+</div>
 </body>
 </html>

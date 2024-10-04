@@ -12,7 +12,7 @@
     <link href="webshop.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-  <form action="login-servlet" method="get" class="login">
+  <form action="login" method="post" class="login">
     <label for="email">
       Email
     </label>

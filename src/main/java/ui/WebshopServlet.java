@@ -20,9 +20,8 @@ public class WebshopServlet extends HttpServlet {
     }
 
     private void getWebshop(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-        HttpSession session = request.getSession();
         ArrayList<MediaInfo> mediasInfo = MediaHandler.getMedias();
-        session.setAttribute("medias", mediasInfo);
+        request.setAttribute("medias", mediasInfo);
         request.getRequestDispatcher("webshop.jsp").forward(request, response);
     }
 
@@ -38,12 +37,15 @@ public class WebshopServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
         String command = request.getParameter("command");
-        switch (command) {
-            case "addToCart":
-                ArrayList<String> cart = (ArrayList<String>) session.getAttribute("cart");
-                cart.add(request.getParameter("ean"));
-                session.setAttribute("cart", cart);
-                break;
+        if (command != null) {
+            switch (command) {
+                case "addToCart":
+                    ArrayList<String> cart = (ArrayList<String>) session.getAttribute("cart");
+                    cart.add(request.getParameter("ean"));
+                    session.setAttribute("cart", cart);
+                    break;
+                default:
+            }
         }
         getWebshop(request, response);
     }

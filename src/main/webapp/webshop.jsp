@@ -17,7 +17,7 @@
 </head>
 <body>
 <div class="menu">
-    <a href="cart.jsp"><img src="img/cart.png"></a>
+    <a href="/cart"><img src="img/cart.png"></a>
     <% UserInfo user = (UserInfo) request.getSession().getAttribute("user"); %>
     <% if (user == null) {%>
     <a href="login.jsp">Sign in</a>
@@ -27,7 +27,7 @@
 </div>
 <div class="content">
     <h1>Music shop</h1>
-    <% ArrayList<MediaInfo> medias = (ArrayList<MediaInfo>) request.getSession().getAttribute("medias"); %>
+    <% ArrayList<MediaInfo> medias = (ArrayList<MediaInfo>) request.getAttribute("medias"); %>
     <% for (MediaInfo media : medias) { %>
     <div class="product">
         <%= media.getName() %><br>

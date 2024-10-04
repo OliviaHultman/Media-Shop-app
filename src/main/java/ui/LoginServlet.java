@@ -11,21 +11,20 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "login", value = "/login-servlet")
+@WebServlet(name = "login", value = "/login")
 public class LoginServlet extends HttpServlet {
-    private String message;
 
     public void init() {
-        message = "Hello World!";
+
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         UserInfo userInfo = UserHandler.getUser(request.getParameter("email"), request.getParameter("password"));
         HttpSession session = request.getSession();
         if (userInfo != null) {
             session.setAttribute("user", userInfo);
         }
-        request.getRequestDispatcher("webshop.jsp").forward(request, response);
+        request.getRequestDispatcher("/webshop").forward(request, response);
     }
 
     public void destroy() {
