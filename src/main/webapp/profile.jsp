@@ -1,4 +1,5 @@
-<%@ page import="ui.UserInfo" %><%--
+<%@ page import="ui.UserInfo" %>
+<%@ page import="bo.Authority" %><%--
   Created by IntelliJ IDEA.
   User: Olivia Hultman
   Date: 2024-10-04
@@ -14,8 +15,17 @@
 <header>
     <div class="menu">
         <a href="/webshop" class="menu_left">Shop</a>
-        <a href="/cart" class="menu_right"><img src="img/cart.png"></a>
         <% UserInfo user = (UserInfo) request.getSession().getAttribute("user"); %>
+        <% if (user != null) {%>
+        <% if (user.getAuthority() != Authority.CUSTOMER) {%>
+        <a href="/orders" class="menu_left">Orders</a>
+        <%}%>
+        <%if (user.getAuthority() == Authority.ADMIN) {%>
+        <a href="/products" class="menu_left">Products</a>
+        <a href="/users" class="menu_left">Users</a>
+        <%}%>
+        <%}%>
+        <a href="/cart" class="menu_right"><img src="img/cart.png"></a>
         <% if (user == null) {%>
         <a href="login.jsp?return=/profile" class="menu_right">Sign in</a>
         <%} else {%>

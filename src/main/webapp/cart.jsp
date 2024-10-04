@@ -2,7 +2,8 @@
 <%@ page import="ui.MediaInfo" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="ui.OrderInfo" %>
-<%@ page import="ui.OrderItemInfo" %><%--
+<%@ page import="ui.OrderItemInfo" %>
+<%@ page import="bo.Authority" %><%--
   Created by IntelliJ IDEA.
   User: Olivia Hultman
   Date: 2024-10-02
@@ -18,8 +19,14 @@
 <header>
     <div class="menu">
         <a href="/webshop" class="menu_left">Shop</a>
-        <a href="/cart" class="menu_right"><img src="img/cart.png"></a>
         <% UserInfo user = (UserInfo) request.getSession().getAttribute("user"); %>
+        <% if (user.getAuthority() != Authority.CUSTOMER) {%>
+        <a href="/orders" class="menu_left">Orders</a>
+        <%} else if (user.getAuthority() == Authority.ADMIN) {%>
+        <a href="/products" class="menu_left">Products</a>
+        <a href="/users" class="menu_left">Users</a>
+        <%}%>
+        <a href="/cart" class="menu_right"><img src="img/cart.png"></a>
         <% if (user == null) {%>
         <a href="login.jsp?return=/cart" class="menu_right">Sign in</a>
         <%} else {%>
