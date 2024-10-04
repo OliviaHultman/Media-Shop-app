@@ -30,6 +30,7 @@
            placeholder="Password" required>
 
     <div>
+      <input type="hidden" name="return" value=<%=request.getParameter("return")%>>
       <button type="submit">
         Login
       </button>

@@ -24,7 +24,8 @@ public class LoginServlet extends HttpServlet {
         if (userInfo != null) {
             session.setAttribute("user", userInfo);
         }
-        request.getRequestDispatcher("/webshop").forward(request, response);
+        response.setContentType("text/html");
+        response.getWriter().println("<meta http-equiv=\"Refresh\" content=\"0; URL=" + request.getParameter("return") + "\">");
     }
 
     public void destroy() {

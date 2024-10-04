@@ -21,7 +21,7 @@
         <a href="/cart" class="menu_right"><img src="img/cart.png"></a>
         <% UserInfo user = (UserInfo) request.getSession().getAttribute("user"); %>
         <% if (user == null) {%>
-        <a href="login.jsp" class="menu_right">Sign in</a>
+        <a href="login.jsp?return=/webshop" class="menu_right">Sign in</a>
         <%} else {%>
         <a href="profile.jsp" class="menu_right"><%=user.getFirstName() + " " + user.getLastName()%></a>
         <%}%>
