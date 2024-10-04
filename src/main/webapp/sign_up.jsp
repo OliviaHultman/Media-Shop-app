@@ -25,6 +25,10 @@
         <input type="hidden" name="return" value=<%=request.getParameter("return")%>>
         <button type="submit">Sign up</button>
     </div>
+    <% String message = request.getParameter("message");%>
+    <% if (message != null && message.equals("duplicate")) {%>
+       <p class="warning">Account with that email already exists</p>
+    <%}%>
 </form>
 </body>
 </html>

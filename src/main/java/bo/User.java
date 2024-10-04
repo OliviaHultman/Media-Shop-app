@@ -34,8 +34,8 @@ public class User {
         return DbUser.selectUser(email, password);
     }
 
-    public void createUser() {
-        DbUser.insertUser(this);
+    public boolean createUser() {
+        return DbUser.insertUser(this);
     }
 
     public void addNewToCart(Media media) {

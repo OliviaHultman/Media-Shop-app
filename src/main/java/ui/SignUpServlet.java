@@ -20,10 +20,16 @@ public class SignUpServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         UserInfo user = new UserInfo(request.getParameter("email"), request.getParameter("firstName"), request.getParameter("lastName"), request.getParameter("password"), Authority.CUSTOMER);
-        UserHandler.createUser(user);
-        request.getSession().setAttribute("user", user);
+        boolean succeded = UserHandler.createUser(user);
+        String returnUrl = request.getParameter("return");
+        if (succeded == true) {
+            request.getSession().setAttribute("user", user);
+        }
+        else {
+            returnUrl = "/sign_up.jsp?return=" + returnUrl + "&message=duplicate";
+        }
         response.setContentType("text/html");
-        response.getWriter().println("<meta http-equiv=\"Refresh\" content=\"0; URL=" + request.getParameter("return") + "\">");
+        response.getWriter().println("<meta http-equiv=\"Refresh\" content=\"0; URL=" + returnUrl + "\">");
     }
 
     public void destroy() {

@@ -46,7 +46,7 @@ public class DbUser extends User {
         return null;
     }
 
-    public static void insertUser(User user) {
+    public static boolean insertUser(User user) {
         try {
             PreparedStatement insertUser = DbManager.getConnection().prepareStatement(INSERT_USER);
             insertUser.setString(1, user.getEmail());
@@ -55,9 +55,10 @@ public class DbUser extends User {
             insertUser.setString(4, user.getPassword());
             insertUser.setString(5, String.valueOf(user.getAuthority()));
             insertUser.executeUpdate();
+            return true;
         }
         catch (SQLException exception) {
-            exception.printStackTrace();
+            return false;
         }
     }
 

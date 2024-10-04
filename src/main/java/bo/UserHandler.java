@@ -15,8 +15,8 @@ public class UserHandler {
         }
     }
 
-    public static void createUser(UserInfo userInfo) {
-        new User(userInfo.getEmail(), userInfo.getFirstName(), userInfo.getLastName(), userInfo.getPassword()).createUser();
+    public static boolean createUser(UserInfo userInfo) {
+        return new User(userInfo.getEmail(), userInfo.getFirstName(), userInfo.getLastName(), userInfo.getPassword()).createUser();
     }
 
     public static void addToCart (MediaInfo chosenMediaInfo, UserInfo userInfo) {
