@@ -16,8 +16,12 @@ p {
     border: 3px solid lightgray;
     margin: auto;
     padding: 20px 20px;
-    height: 120px;
+    height: 230px;
     overflow: hidden;
+}
+
+.product p {
+    padding: 5px;
 }
 
 .content {

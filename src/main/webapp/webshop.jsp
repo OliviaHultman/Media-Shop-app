@@ -43,17 +43,17 @@
     <% ArrayList<MediaInfo> medias = (ArrayList<MediaInfo>) request.getAttribute("medias"); %>
     <% for (MediaInfo media : medias) { %>
     <div class="product">
-        <%= media.getName() %><br>
-        <%= media.getArtist()%><br>
-        <%= media.getPrice() + ":-"%><br>
+        <p><%= media.getName() %><br></p>
+        <p><%= media.getArtist()%><br></p>
+        <p><%= media.getPrice() + ":-"%><br></p>
         <% int nrOfCopies = media.getNrOfCopies(); %>
         <% if (nrOfCopies == 0) { %>
-            <%="Not in stock"%>
+        <p><%="Not in stock"%></p>
         <%} else {%>
         <%if (nrOfCopies <= 5) {%>
-        <%="Few left in stock"%>
+        <p><%="Few left in stock"%></p>
         <%} else {%>
-        <%="In stock"%>
+        <p><%="In stock"%></p>
         <%}%>
             <form method="post" action="add-to-cart">
                 <input type="hidden" name="ean" value="<%= media.getEan()%>">

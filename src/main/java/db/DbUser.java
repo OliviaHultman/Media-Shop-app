@@ -53,7 +53,7 @@ public class DbUser extends User {
             insertUser.setString(2, user.getFirstName());
             insertUser.setString(3, user.getLastName());
             insertUser.setString(4, user.getPassword());
-            insertUser.setString(5, String.valueOf(user.getAuthority()));
+            insertUser.setString(5, String.valueOf(Authority.CUSTOMER));
             insertUser.executeUpdate();
             return true;
         }
