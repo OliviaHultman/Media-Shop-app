@@ -1,23 +1,16 @@
 package ui;
 
-import bo.Media;
-
-public class OrderItemInfo {
-    private String ean;
+public class MediaItemInfo {
+    private MediaInfo media;
     private int nrOfCopies;
 
-    public OrderItemInfo(String ean, int nrOfCopies) {
-        this.ean = ean;
+    public MediaItemInfo(MediaInfo media, int nrOfCopies) {
+        this.media = media;
         this.nrOfCopies = nrOfCopies;
     }
 
-    public OrderItemInfo(String ean) {
-        this.ean = ean;
-        nrOfCopies = 1;
-    }
-
-    public String getEan() {
-        return ean;
+    public MediaInfo getMedia() {
+        return media;
     }
 
     public int getNrOfCopies() {

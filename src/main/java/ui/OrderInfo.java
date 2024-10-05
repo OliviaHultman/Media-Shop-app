@@ -5,24 +5,30 @@ import bo.Status;
 import java.util.ArrayList;
 
 public class OrderInfo {
-    private String orderNr;
+    private int orderNr;
     private ArrayList<OrderItemInfo> items;
-    private UserInfo user;
+    private String email;
     private Status status;
 
-    protected OrderInfo(String orderNr, ArrayList<OrderItemInfo> items, UserInfo user, Status status) {
+    protected OrderInfo(int orderNr, ArrayList<OrderItemInfo> items, String email, Status status) {
         this.orderNr = orderNr;
         this.items = items;
-        this.user = user;
+        this.email = email;
         this.status = status;
     }
 
-    public OrderInfo(ArrayList<OrderItemInfo> items, UserInfo user) {
-        this.items = items;
-        this.user = user;
+    public OrderInfo(int orderNr, String email, Status status) {
+        this.orderNr = orderNr;
+        items = new ArrayList<>();
+        this.email = email;
+        this.status = status;
     }
 
-    public String getOrderNr() {
+    public void addItem(OrderItemInfo orderItem) {
+        items.add(orderItem);
+    }
+
+    public int getOrderNr() {
         return orderNr;
     }
 
@@ -30,8 +36,8 @@ public class OrderInfo {
         return items;
     }
 
-    public UserInfo getUser() {
-        return user;
+    public String getEmail() {
+        return email;
     }
 
     public Status getStatus() {

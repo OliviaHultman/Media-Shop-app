@@ -19,8 +19,8 @@ public class CartServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
-        ArrayList<EanItemInfo> cart = (ArrayList<EanItemInfo>) session.getAttribute("cart");
-        ArrayList<OrderItemInfo> order = MediaHandler.getCartMedias(cart);
+        ArrayList<OrderItemInfo> cart = (ArrayList<OrderItemInfo>) session.getAttribute("cart");
+        ArrayList<MediaItemInfo> order = MediaHandler.getCartMedias(cart);
         request.setAttribute("order", order);
         String url = "cart.jsp";
         request.getRequestDispatcher("cart.jsp").forward(request, response);

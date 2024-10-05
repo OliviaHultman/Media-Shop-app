@@ -5,28 +5,43 @@ import db.DbOrder;
 import java.util.ArrayList;
 
 public class Order {
-    private String orderNr;
+    private int orderNr;
     private ArrayList<OrderItem> items;
-    private User user;
+    private String email;
     private Status status;
+    private static int nextOrderNr;
 
-    protected Order(String orderNr, ArrayList<OrderItem> items, User user, Status status) {
+    protected Order(int orderNr, ArrayList<OrderItem> items, String email, Status status) {
         this.orderNr = orderNr;
         this.items = items;
-        this.user = user;
+        this.email = email;
         this.status = status;
     }
 
-    public Order(ArrayList<OrderItem> items, User user) {
+    protected Order(int orderNr, String email, Status status) {
+        this.orderNr = orderNr;
+        items = new ArrayList<>();
+        this.email = email;
+        this.status = status;
+    }
+
+    protected Order(ArrayList<OrderItem> items, String email) {
+        orderNr = nextOrderNr;
+        nextOrderNr++;
         this.items = items;
-        this.user = user;
+        this.email = email;
+        status = Status.CONFIRMED;
     }
 
-    public static boolean createOrder(ArrayList<EanItem> eanItems, String email) {
-        return DbOrder.insertMediaOrder(eanItems, email);
+    public boolean createOrder() {
+        return DbOrder.insertMediaOrder(this);
     }
 
-    public String getOrderNr() {
+    public static ArrayList<DbOrder> getOrders() {
+        return DbOrder.selectOrders();
+    }
+
+    public int getOrderNr() {
         return orderNr;
     }
 
@@ -34,11 +49,15 @@ public class Order {
         return items;
     }
 
-    public User getUser() {
-        return user;
+    public String getEmail() {
+        return email;
     }
 
     public Status getStatus() {
         return status;
+    }
+
+    public void addItem(OrderItem item) {
+        items.add(item);
     }
 }

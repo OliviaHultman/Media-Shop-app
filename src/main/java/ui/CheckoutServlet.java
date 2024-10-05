@@ -22,7 +22,8 @@ public class CheckoutServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
-        boolean succeded = OrderHandler.createOrder((ArrayList<EanItemInfo>) session.getAttribute("cart"), (UserInfo) session.getAttribute("user"));
+        boolean succeded = OrderHandler.createOrder((ArrayList<OrderItemInfo>) session.getAttribute("cart"),
+                ((UserInfo) session.getAttribute("user")).getEmail());
         String url;
         if (succeded) {
             session.setAttribute("cart", new ArrayList<>());

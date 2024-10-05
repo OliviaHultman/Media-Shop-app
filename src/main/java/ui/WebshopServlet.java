@@ -27,7 +27,7 @@ public class WebshopServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
         if (session.getAttribute("cart") == null) {
-            session.setAttribute("cart", new ArrayList<EanItemInfo>());
+            session.setAttribute("cart", new ArrayList<>());
         }
         getWebshop(request, response);
     }

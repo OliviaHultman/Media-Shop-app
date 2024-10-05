@@ -1,9 +1,6 @@
-<%@ page import="ui.UserInfo" %>
-<%@ page import="ui.MediaInfo" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="ui.OrderInfo" %>
-<%@ page import="ui.OrderItemInfo" %>
-<%@ page import="bo.Authority" %><%--
+<%@ page import="bo.Authority" %>
+<%@ page import="ui.*" %><%--
   Created by IntelliJ IDEA.
   User: Olivia Hultman
   Date: 2024-10-02
@@ -40,10 +37,10 @@
 
 <div class="content">
     <h1>Cart</h1>
-    <% ArrayList<OrderItemInfo> order = (ArrayList<OrderItemInfo>) request.getAttribute("order"); %>
+    <% ArrayList<MediaItemInfo> order = (ArrayList<MediaItemInfo>) request.getAttribute("order"); %>
     <% int totalPrice = 0; %>
     <% boolean inStock = true;%>
-    <% for (OrderItemInfo item : order) { %>
+    <% for (MediaItemInfo item : order) { %>
     <div class="product">
         <p><%= item.getMedia().getName() %><br></p>
         <p><%= item.getMedia().getArtist()%><br></p>

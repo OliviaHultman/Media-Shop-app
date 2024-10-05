@@ -2,7 +2,6 @@ package bo;
 
 import db.DbMedia;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 public class Media {
@@ -27,7 +26,7 @@ public class Media {
     }
 
     public static ArrayList<DbMedia> getMedias() {
-        return DbMedia.selectMedia();
+        return DbMedia.selectMedias();
     }
 
     public static ArrayList<DbMedia> getUserMedias(String user) {
@@ -35,7 +34,7 @@ public class Media {
     }
 
     public static ArrayList<DbMedia> getCartMedias(ArrayList<String> eans) {
-        return DbMedia.selectMediaByEan(eans);
+        return DbMedia.selectMediasByEan(eans);
     }
 
     public String getEan() {

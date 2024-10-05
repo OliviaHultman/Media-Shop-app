@@ -17,10 +17,10 @@ public class AddToCartServlet extends HttpServlet {
 
     }
 
-    private EanItemInfo findCartItem(ArrayList<EanItemInfo> cart, String ean) {
-        for (EanItemInfo eanItemInfo : cart) {
-            if (eanItemInfo.getEan().equals(ean)) {
-                return eanItemInfo;
+    private OrderItemInfo findCartItem(ArrayList<OrderItemInfo> cart, String ean) {
+        for (OrderItemInfo orderItemInfo : cart) {
+            if (orderItemInfo.getEan().equals(ean)) {
+                return orderItemInfo;
             }
         }
         return null;
@@ -28,18 +28,18 @@ public class AddToCartServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
-        ArrayList<EanItemInfo> cart = (ArrayList<EanItemInfo>) session.getAttribute("cart");
+        ArrayList<OrderItemInfo> cart = (ArrayList<OrderItemInfo>) session.getAttribute("cart");
         String ean = request.getParameter("ean");
-        EanItemInfo eanItemInfo = findCartItem(cart, ean);
+        OrderItemInfo orderItemInfo = findCartItem(cart, ean);
         String url = "/webshop";
-        if (eanItemInfo == null) {
-            cart.add(new EanItemInfo(ean));
+        if (orderItemInfo == null) {
+            cart.add(new OrderItemInfo(ean));
         }
-        else if (eanItemInfo.getNrOfCopies() == Integer.parseInt(request.getParameter("nrOfCopies"))) {
-            url += "?message=out&ean=" + eanItemInfo.getEan();
+        else if (orderItemInfo.getNrOfCopies() == Integer.parseInt(request.getParameter("nrOfCopies"))) {
+            url += "?message=out&ean=" + orderItemInfo.getEan();
         }
         else {
-            eanItemInfo.incrementNrOfCopies();
+            orderItemInfo.incrementNrOfCopies();
         }
         session.setAttribute("cart", cart);
         response.setContentType("text/html");

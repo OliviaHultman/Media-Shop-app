@@ -3,6 +3,7 @@ package bo;
 import db.DbMedia;
 import ui.EanItemInfo;
 import ui.MediaInfo;
+import ui.MediaItemInfo;
 import ui.OrderItemInfo;
 
 import java.util.ArrayList;
@@ -22,15 +23,15 @@ public class MediaHandler {
         return convertToMediaInfo(Media.getMedias());
     }
 
-    public static ArrayList<OrderItemInfo> getCartMedias(ArrayList<EanItemInfo> eanItemsInfo) {
+    public static ArrayList<MediaItemInfo> getCartMedias(ArrayList<OrderItemInfo> orderItemsInfo) {
         ArrayList<String> eans = new ArrayList<>();
-        for (EanItemInfo eanItemInfo : eanItemsInfo) {
-            eans.add(eanItemInfo.getEan());
+        for (OrderItemInfo orderItemInfo : orderItemsInfo) {
+            eans.add(orderItemInfo.getEan());
         }
         ArrayList<MediaInfo> mediasInfo = convertToMediaInfo(Media.getCartMedias(eans));
-        ArrayList<OrderItemInfo> orderInfo = new ArrayList<>();
-        for (int i = 0; i < eanItemsInfo.size(); i++) {
-            orderInfo.add(new OrderItemInfo(mediasInfo.get(i), eanItemsInfo.get(i).getNrOfCopies()));
+        ArrayList<MediaItemInfo> orderInfo = new ArrayList<>();
+        for (int i = 0; i < orderItemsInfo.size(); i++) {
+            orderInfo.add(new MediaItemInfo(mediasInfo.get(i), orderItemsInfo.get(i).getNrOfCopies()));
         }
         return orderInfo;
     }

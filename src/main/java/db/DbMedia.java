@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 public class DbMedia extends Media {
     final static String SELECT_MEDIA_BY_USER = "SELECT Media.* FROM Booked LEFT JOIN Media ON Booked.media = Media.ean WHERE Booked.user = ?",
-            SELECT_MEDIA = "SELECT Media.* FROM Media",
-            SELECT_MEDIA_BY_EAN = "SELECT Media.* FROM Media WHERE Media.ean = ?",
+            SELECT_MEDIAS = "SELECT Media.* FROM Media",
+            SELECT_MEDIAS_BY_EAN = "SELECT Media.* FROM Media WHERE Media.ean = ?",
             SELECT_NR_OF_COPIES = "SELECT Media.nrOfCopies FROM Media WHERE Media.ean = ?",
             UPDATE_NR_OF_COPIES = "UPDATE Media SET Media.nrOfCopies = Media.nrOfCopies - ? WHERE Media.ean = ?";
 
@@ -28,10 +28,10 @@ public class DbMedia extends Media {
         return medias;
     }
 
-    public static ArrayList<DbMedia> selectMedia() {
+    public static ArrayList<DbMedia> selectMedias() {
         ResultSet result = null;
         try {
-            PreparedStatement selectMedia = DbManager.getConnection().prepareStatement(SELECT_MEDIA);
+            PreparedStatement selectMedia = DbManager.getConnection().prepareStatement(SELECT_MEDIAS);
             return createMedias(selectMedia.executeQuery());
         } catch (SQLException exception) {
             return null;
@@ -47,10 +47,10 @@ public class DbMedia extends Media {
         }
     }
 
-    public static ArrayList<DbMedia> selectMediaByEan(ArrayList<String> eans) {
+    public static ArrayList<DbMedia> selectMediasByEan(ArrayList<String> eans) {
         ResultSet result = null;
         try {
-            PreparedStatement selectMedia = DbManager.getConnection().prepareStatement(SELECT_MEDIA_BY_EAN);
+            PreparedStatement selectMedia = DbManager.getConnection().prepareStatement(SELECT_MEDIAS_BY_EAN);
             ArrayList<DbMedia> medias = new ArrayList<>();
             for (String ean : eans) {
                 selectMedia.setString(1, ean);
