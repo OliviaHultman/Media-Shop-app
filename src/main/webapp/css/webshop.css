@@ -17,7 +17,7 @@ p {
     margin: auto;
     padding: 20px 20px;
     height: 400px;
-    overflow: auto;
+    overflow: hidden;
 }
 
 .product p {
@@ -88,10 +88,18 @@ p {
     color: red;
 }
 
-input {
+.account input {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.product input {
+    width: 50px;
+    padding: 5px 5px;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;

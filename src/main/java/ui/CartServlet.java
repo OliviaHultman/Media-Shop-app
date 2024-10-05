@@ -22,6 +22,7 @@ public class CartServlet extends HttpServlet {
         ArrayList<EanItemInfo> cart = (ArrayList<EanItemInfo>) session.getAttribute("cart");
         ArrayList<OrderItemInfo> order = MediaHandler.getCartMedias(cart);
         request.setAttribute("order", order);
+        String url = "cart.jsp";
         request.getRequestDispatcher("cart.jsp").forward(request, response);
     }
 

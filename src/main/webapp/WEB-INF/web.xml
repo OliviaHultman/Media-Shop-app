@@ -44,6 +44,14 @@
         <url-pattern>/checkout</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>updateCart</servlet-name>
+        <servlet-class>ui.UpdateCartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateCart</servlet-name>
+        <url-pattern>/update-cart</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>addToCart</servlet-name>
         <servlet-class>ui.AddToCartServlet</servlet-class>
     </servlet>

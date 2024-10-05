@@ -20,4 +20,8 @@ public class EanItemInfo {
     public void incrementNrOfCopies() {
         nrOfCopies++;
     }
+
+    public void setNrOfCopies(int nrOfCopies) {
+        this.nrOfCopies = nrOfCopies;
+    }
 }

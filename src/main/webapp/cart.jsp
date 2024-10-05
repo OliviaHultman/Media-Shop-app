@@ -50,7 +50,13 @@
         <p><%= item.getMedia().getLabel()%><br></p>
         <p><%=item.getMedia().getType() + ", " + item.getMedia().getGenre()%><br></p>
         <p><%= item.getMedia().getPrice() + ":-"%><br></p>
-        <p><%= "Number: " + item.getNrOfCopies()%></p>
+        <form action="update-cart" method="post">
+            <label for="nrOfCopies">Number</label>
+            <input type="text" id="nrOfCopies" name="nrOfCopiesCart" value="<%=item.getNrOfCopies()%>" required>
+            <input type="hidden" name="nrOfCopiesStock" value="<%=item.getMedia().getNrOfCopies()%>">
+            <input type="hidden" name="ean" value="<%=item.getMedia().getEan()%>">
+            <input type="submit" style="visibility: hidden">
+        </form>
         <% if (item.getNrOfCopies() > item.getMedia().getNrOfCopies()) {%>
         <p class="warning">Not enough in stock</p>
         <%inStock = false;%>
