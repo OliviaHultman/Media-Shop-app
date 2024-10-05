@@ -46,15 +46,15 @@ p {
 }
 
 .profile {
-    width: 20%;
+    width: 50%;
     display: inline-block;
-    border: 3px solid lightgray;
     margin: auto;
     padding: 20px 20px;
     height: 350px;
     overflow: hidden;
 }
 .profile input {
+    width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -67,6 +67,7 @@ p {
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
+    width: 100%;
     box-sizing: border-box;
 }
 
@@ -114,6 +115,13 @@ p {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+}
+
+.profile button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 200px;
 }
 
 .add_user {

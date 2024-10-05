@@ -75,4 +75,13 @@
         <servlet-name>users</servlet-name>
         <url-pattern>/users</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>signOut</servlet-name>
+        <servlet-class>ui.SignOutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>signOut</servlet-name>
+        <url-pattern>/sign-out</url-pattern>
+    </servlet-mapping>
+
 </web-app>

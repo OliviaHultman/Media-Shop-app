@@ -15,7 +15,7 @@
 </head>
 <header>
   <div class="menu">
-    <a href="/webshop" class="menu_left">Users</a>
+    <a href="/webshop" class="menu_left">Shop</a>
     <% UserInfo user = (UserInfo) request.getSession().getAttribute("user"); %>
     <% if (user != null) {%>
     <% if (user.getAuthority() != Authority.CUSTOMER) {%>

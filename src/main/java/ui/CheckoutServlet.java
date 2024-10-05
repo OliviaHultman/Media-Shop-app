@@ -25,6 +25,7 @@ public class CheckoutServlet extends HttpServlet {
         boolean succeded = OrderHandler.createOrder((ArrayList<EanItemInfo>) session.getAttribute("cart"), (UserInfo) session.getAttribute("user"));
         String url;
         if (succeded) {
+            session.setAttribute("cart", new ArrayList<>());
             url = "confirmation.jsp";
         }
         else {

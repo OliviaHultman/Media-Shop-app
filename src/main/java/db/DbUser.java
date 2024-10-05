@@ -63,14 +63,12 @@ public class DbUser extends User {
     public static boolean updateUser(User user) {
         try {
             PreparedStatement updateUser = DbManager.getConnection().prepareStatement(UPDATE_USER);
-            System.out.print(user.getAuthority());
-            System.out.print(user.getEmail());
             updateUser.setString(1, user.getFirstName());
             updateUser.setString(2, user.getLastName());
             updateUser.setString(3, user.getPassword());
             updateUser.setString(4, String.valueOf(user.getAuthority()));
             updateUser.setString(5, user.getEmail());
-            System.out.println(updateUser.executeUpdate());
+            updateUser.executeUpdate();
             return true;
         }
         catch (SQLException exception) {

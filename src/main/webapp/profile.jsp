@@ -8,6 +8,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<% if (request.getSession().getAttribute("user") == null) {%>
+<meta http-equiv="Refresh" content="0; URL=/sign_in.jsp?return=/profile.jsp">
+<%} else {%>
 <head>
     <title>Profile</title>
     <link href="css/webshop.css" rel="stylesheet" type="text/css">
@@ -36,6 +39,7 @@
 <body>
 <div class="content">
     <h1>My profile</h1>
+    <a href="/sign-out"><button class="add_user">Sign out</button></a>
     <div class="profile">
         <form action="update-user" method="post">
             <label for="email">Email</label>
@@ -46,7 +50,9 @@
             <input name="lastName" id="lastName" value="<%=user.getLastName()%>" required>
             <label for="password">Password</label>
             <input type="password" name="password" id="password" value="<%=user.getPassword()%>" required>
-            <% if (user.getAuthority() == Authority.ADMIN) { %>
+            <% if (user.getAuthority() != Authority.ADMIN) { %>
+            <input type="hidden" name="authority" value="<%=String.valueOf(user.getAuthority())%>">
+            <%} else {%>
             <label for="authority">Authority</label>
             <select name="authority" id="authority" required>
                 <% for (Authority authority : Authority.values()) {%>
@@ -67,4 +73,5 @@
 
 </div>
 </body>
+<%}%>
 </html>

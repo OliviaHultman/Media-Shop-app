@@ -20,7 +20,7 @@ import java.io.IOException;
 
         public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
             UserInfo user = new UserInfo(request.getParameter("email"), request.getParameter("firstName"), request.getParameter("lastName"), request.getParameter("password"), Authority.valueOf(request.getParameter("authority")));
-            System.out.println(UserHandler.changeUser(user));
+            UserHandler.changeUser(user);
             response.setContentType("text/html");
             String returnUrl = request.getParameter("return");
             if (returnUrl.equals("/profile.jsp")) {
