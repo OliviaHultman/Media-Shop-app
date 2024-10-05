@@ -17,7 +17,7 @@
     <input type="text" id="email" name="email" placeholder="Email" required>
     <label for="password">Password</label>
     <input type="password" id="password" name="password" placeholder="Password" required>
-    <a href="sign_up.jsp?return=<%=request.getParameter("return")%>">Sign up</a>
+    <a href="create_user.jsp?return=<%=request.getParameter("return")%>">Sign up</a>
     <div>
       <input type="hidden" name="return" value=<%=request.getParameter("return")%>>
       <button type="submit">Sign in</button>

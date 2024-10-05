@@ -20,6 +20,56 @@ p {
     overflow: hidden;
 }
 
+.user {
+    width: 20%;
+    display: inline-block;
+    border: 3px solid lightgray;
+    margin: auto;
+    padding: 20px 20px;
+    height: 300px;
+    overflow: hidden;
+}
+.user input {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.user select {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.profile {
+    width: 20%;
+    display: inline-block;
+    border: 3px solid lightgray;
+    margin: auto;
+    padding: 20px 20px;
+    height: 350px;
+    overflow: hidden;
+}
+.profile input {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.profile select {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
 .product p {
     padding: 5px;
 }
@@ -66,6 +116,14 @@ p {
     cursor: pointer;
 }
 
+.add_user {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    float: right;
+    width: 200px;
+}
+
 .add:hover {
     background-color: #ddd;
 }
@@ -89,6 +147,15 @@ p {
 }
 
 .account input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.account select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;

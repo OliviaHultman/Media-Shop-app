@@ -38,22 +38,12 @@ public class User {
         return DbUser.insertUser(this);
     }
 
-    public void addNewToCart(Media media) {
-        DbUser.addBooked(media.getEan(), email);
-        addToCart(media);
+    public boolean changeUser() {
+        return DbUser.updateUser(this);
     }
 
-    public void addToCart(Media media) {
-        cart.add(media);
-    }
-
-    public void removeFromCart(Media media) {
-        DbUser.deleteBooked(media.getEan(), email);
-        cart.remove(media);
-    }
-
-    public void addAllToCart(ArrayList<Media> medias) {
-        cart.addAll(medias);
+    public static ArrayList<DbUser> getUsers() {
+        return DbUser.selectUsers();
     }
 
     public String getEmail() {

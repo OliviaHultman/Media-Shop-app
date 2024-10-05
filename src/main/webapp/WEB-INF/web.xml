@@ -20,12 +20,20 @@
         <url-pattern>/sign-in</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>signUp</servlet-name>
-        <servlet-class>ui.SignUpServlet</servlet-class>
+        <servlet-name>createUser</servlet-name>
+        <servlet-class>ui.CreateUserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>signUp</servlet-name>
-        <url-pattern>/sign-up</url-pattern>
+        <servlet-name>createUser</servlet-name>
+        <url-pattern>/create-user</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>updateUser</servlet-name>
+        <servlet-class>ui.UpdateUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateUser</servlet-name>
+        <url-pattern>/update-user</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>cart</servlet-name>
@@ -58,5 +66,13 @@
     <servlet-mapping>
         <servlet-name>addToCart</servlet-name>
         <url-pattern>/add-to-cart</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>users</servlet-name>
+        <servlet-class>ui.UsersServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>users</servlet-name>
+        <url-pattern>/users</url-pattern>
     </servlet-mapping>
 </web-app>

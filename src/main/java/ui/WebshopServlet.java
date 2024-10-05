@@ -13,10 +13,9 @@ import java.util.ArrayList;
 
 @WebServlet(name = "webshop", value = "/webshop")
 public class WebshopServlet extends HttpServlet {
-    private String message;
 
     public void init() {
-        message = "Hello World!";
+
     }
 
     private void getWebshop(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{

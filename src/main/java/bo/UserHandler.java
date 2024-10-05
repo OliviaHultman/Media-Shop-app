@@ -1,7 +1,10 @@
 package bo;
 
+import db.DbUser;
 import ui.MediaInfo;
 import ui.UserInfo;
+
+import java.util.ArrayList;
 
 public class UserHandler {
     public static UserInfo getUser(String email, String password) {
@@ -16,32 +19,22 @@ public class UserHandler {
     }
 
     public static boolean createUser(UserInfo userInfo) {
-        return new User(userInfo.getEmail(), userInfo.getFirstName(), userInfo.getLastName(), userInfo.getPassword()).createUser();
+        User user = new User(userInfo.getEmail(), userInfo.getFirstName(), userInfo.getLastName(), userInfo.getPassword(), userInfo.getAuthority());
+        return user.createUser();
     }
 
-    public static void addToCart (MediaInfo chosenMediaInfo, UserInfo userInfo) {
-        User user = new User(userInfo.getEmail(), userInfo.getFirstName(), userInfo.getLastName(),
-                userInfo.getPassword(), userInfo.getAuthority());
-        for (MediaInfo mediaInfo : userInfo.getCart()) {
-            user.addToCart(new Media(mediaInfo.getEan(), mediaInfo.getName(), mediaInfo.getArtist(),
-                    mediaInfo.getType(), mediaInfo.getLabel(), mediaInfo.getGenre(), mediaInfo.getPrice(),
-                    mediaInfo.getNrOfCopies()));
-        }
-        user.addNewToCart(new Media(chosenMediaInfo.getEan(), chosenMediaInfo.getName(), chosenMediaInfo.getArtist(),
-                chosenMediaInfo.getType(), chosenMediaInfo.getLabel(), chosenMediaInfo.getGenre(),
-                chosenMediaInfo.getPrice(), chosenMediaInfo.getNrOfCopies()));
+    public static boolean changeUser(UserInfo userInfo) {
+        User user = new User(userInfo.getEmail(), userInfo.getFirstName(), userInfo.getLastName(), userInfo.getPassword(), userInfo.getAuthority());
+        return user.changeUser();
     }
 
-    public static void removeFromCart (MediaInfo chosenMediaInfo, UserInfo userInfo) {
-        User user = new User(userInfo.getEmail(), userInfo.getFirstName(), userInfo.getLastName(),
-                userInfo.getPassword(), userInfo.getAuthority());
-        for (MediaInfo mediaInfo : userInfo.getCart()) {
-            user.addToCart(new Media(mediaInfo.getEan(), mediaInfo.getName(), mediaInfo.getArtist(),
-                    mediaInfo.getType(), mediaInfo.getLabel(), mediaInfo.getGenre(), mediaInfo.getPrice(),
-                    mediaInfo.getNrOfCopies()));
+    public static ArrayList<UserInfo> getUsers() {
+        ArrayList<DbUser> users = User.getUsers();
+        ArrayList<UserInfo> usersInfo = new ArrayList<>();
+        for (User user : users) {
+            usersInfo.add(new UserInfo(user.getEmail(), user.getFirstName(), user.getLastName(), user.getPassword(), user.getAuthority()));
         }
-        user.removeFromCart(new Media(chosenMediaInfo.getEan(), chosenMediaInfo.getName(), chosenMediaInfo.getArtist(),
-                chosenMediaInfo.getType(), chosenMediaInfo.getLabel(), chosenMediaInfo.getGenre(),
-                chosenMediaInfo.getPrice(), chosenMediaInfo.getNrOfCopies()));
+        return usersInfo;
     }
+
 }

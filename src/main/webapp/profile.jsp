@@ -34,6 +34,37 @@
     </div>
 </header>
 <body>
+<div class="content">
+    <h1>My profile</h1>
+    <div class="profile">
+        <form action="update-user" method="post">
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" value="<%=user.getEmail()%>" required readonly>
+            <label for="firstName">First name</label>
+            <input type="text" name="firstName" id="firstName" value="<%=user.getFirstName()%>" required>
+            <label for="lastName">Last name</label>
+            <input name="lastName" id="lastName" value="<%=user.getLastName()%>" required>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" value="<%=user.getPassword()%>" required>
+            <% if (user.getAuthority() == Authority.ADMIN) { %>
+            <label for="authority">Authority</label>
+            <select name="authority" id="authority" required>
+                <% for (Authority authority : Authority.values()) {%>
+                <% String selected = "";%>
+                <% if (authority == user.getAuthority()) {%>
+                <%selected = "selected";%>
+                <%}%>
+                <option value="<%=authority%>" <%=selected%>>
+                    <%=authority%>
+                </option>
+                <%}%>
+            </select>
+            <%}%>
+            <input type="hidden" name="return" value="/profile.jsp">
+            <button type="submit" class="add">Update</button>
+        </form>
+    </div>
 
+</div>
 </body>
 </html>
