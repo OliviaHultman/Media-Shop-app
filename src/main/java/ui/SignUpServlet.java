@@ -22,7 +22,7 @@ public class SignUpServlet extends HttpServlet {
         UserInfo user = new UserInfo(request.getParameter("email"), request.getParameter("firstName"), request.getParameter("lastName"), request.getParameter("password"), Authority.CUSTOMER);
         boolean succeded = UserHandler.createUser(user);
         String returnUrl = request.getParameter("return");
-        if (succeded == true) {
+        if (succeded) {
             request.getSession().setAttribute("user", user);
         }
         else {

@@ -23,10 +23,10 @@ public class WebshopServlet extends HttpServlet {
         ArrayList<MediaInfo> mediasInfo = MediaHandler.getMedias();
         request.setAttribute("medias", mediasInfo);
         String url = "webshop.jsp";
-        String message = request.getParameter("message");
+        /*String message = request.getParameter("message");
         if (message != null && message.equals("out")) {
             url += "?message=" + message + "&ean=" + request.getParameter("ean");
-        }
+        }*/
         request.getRequestDispatcher(url).forward(request, response);
     }
 

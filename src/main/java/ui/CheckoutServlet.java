@@ -22,8 +22,15 @@ public class CheckoutServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
-        OrderHandler.createOrder((ArrayList<EanItemInfo>) session.getAttribute("cart"), (UserInfo) session.getAttribute("user"));
-        request.getRequestDispatcher("confirmation.jsp").forward(request, response);
+        boolean succeded = OrderHandler.createOrder((ArrayList<EanItemInfo>) session.getAttribute("cart"), (UserInfo) session.getAttribute("user"));
+        String url;
+        if (succeded) {
+            url = "confirmation.jsp";
+        }
+        else {
+            url = "/cart";
+        }
+        request.getRequestDispatcher(url).forward(request, response);
     }
 
     public void destroy() {

@@ -42,17 +42,22 @@
     <h1>Cart</h1>
     <% ArrayList<OrderItemInfo> order = (ArrayList<OrderItemInfo>) request.getAttribute("order"); %>
     <% int totalPrice = 0; %>
+    <% boolean inStock = true;%>
     <% for (OrderItemInfo item : order) { %>
     <div class="product">
         <p><%= item.getMedia().getName() %><br></p>
         <p><%= item.getMedia().getArtist()%><br></p>
         <p><%= item.getMedia().getPrice() + ":-"%><br></p>
         <p><%= "Number: " + item.getNrOfCopies()%></p>
+        <% if (item.getNrOfCopies() > item.getMedia().getNrOfCopies()) {%>
+        <p class="warning">Not enough in stock</p>
+        <%inStock = false;%>
+        <%}%>
         <% totalPrice += (item.getMedia().getPrice() * item.getNrOfCopies()); %>
     </div>
     <% } %>
     <h2><%= totalPrice + ":-"%></h2>
-    <% if (!order.isEmpty()) {%>
+    <% if (!order.isEmpty() && inStock) {%>
         <% String link;%>
         <% if (user == null) {%>
             <% link = "sign_in.jsp?return=/checkout";%>

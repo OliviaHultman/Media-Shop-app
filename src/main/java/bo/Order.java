@@ -22,8 +22,8 @@ public class Order {
         this.user = user;
     }
 
-    public static void createOrder(ArrayList<EanItem> eanItems, String email) {
-        DbOrder.insertMediaOrder(eanItems, email);
+    public static boolean createOrder(ArrayList<EanItem> eanItems, String email) {
+        return DbOrder.insertMediaOrder(eanItems, email);
     }
 
     public String getOrderNr() {

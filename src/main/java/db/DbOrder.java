@@ -14,34 +14,42 @@ public class DbOrder extends Order {
         super(orderNr, items, user, status);
     }
 
-    public static void insertMediaOrder(ArrayList<EanItem> eanItems, String email) {
+    public static boolean insertMediaOrder(ArrayList<EanItem> eanItems, String email) {
         Connection connection = DbManager.getConnection();
         try {
             PreparedStatement insertMediaOrder = connection.prepareStatement(INSERT_MEDIA_ORDER);
             insertMediaOrder.setString(2, email);
             connection.setAutoCommit(false);
             for (EanItem eanItem : eanItems) {
+                if (!DbMedia.updateNrOfCopies(eanItem.getEan(), eanItem.getNrOfCopies())) {
+                    connection.rollback();
+                    return false;
+                }
                 insertMediaOrder.setString(1, eanItem.getEan());
                 insertMediaOrder.setString(3, String.valueOf(eanItem.getNrOfCopies()));
                 insertMediaOrder.executeUpdate();
-                DbMedia.updateNrOfCopies(eanItem.getEan(), eanItem.getNrOfCopies());
+
             }
             connection.commit();
+            return true;
         }
         catch (SQLException exception) {
             try {
                 connection.rollback();
             }
             catch (SQLException exception2) {
-
             }
+            finally {
+                return false;
+            }
+
         }
         finally {
             try {
                 connection.setAutoCommit(true);
             }
             catch (SQLException exception) {
-                exception.printStackTrace();
+
             }
         }
     }
