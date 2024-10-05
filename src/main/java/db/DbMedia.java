@@ -1,12 +1,9 @@
 package db;
 
-import bo.Authority;
-import bo.Category;
-import bo.Genre;
+import bo.Type;
 import bo.Media;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class DbMedia extends Media {
@@ -16,17 +13,16 @@ public class DbMedia extends Media {
             SELECT_NR_OF_COPIES = "SELECT Media.nrOfCopies FROM Media WHERE Media.ean = ?",
             UPDATE_NR_OF_COPIES = "UPDATE Media SET Media.nrOfCopies = Media.nrOfCopies - ? WHERE Media.ean = ?";
 
-    private DbMedia(String ean, String name, String artist, Category category, String label, Genre genre, Date released, String description, int price, int nrOfCopies) {
-        super(ean, name, artist, category, label, genre, released, description, price, nrOfCopies);
+    private DbMedia(String ean, String name, String artist, Type type, String label, String genre, int price, int nrOfCopies) {
+        super(ean, name, artist, type, label, genre, price, nrOfCopies);
     }
 
     private static ArrayList<DbMedia> createMedias(ResultSet result) throws SQLException {
         ArrayList<DbMedia> medias = new ArrayList<>();
         while (result.next()) {
             medias.add(new DbMedia(result.getString("ean"), result.getString("name"),
-                    result.getString("artist"), Category.valueOf(result.getString("category")),
-                    result.getString("label"), Genre.valueOf(result.getString("genre")),
-                    result.getDate("released"), result.getString("description"),
+                    result.getString("artist"), Type.valueOf(result.getString("type")),
+                    result.getString("label"), result.getString("category"),
                     result.getInt("price"), result.getInt("nrOfCopies")));
         }
         return medias;
@@ -61,9 +57,8 @@ public class DbMedia extends Media {
                 result = selectMedia.executeQuery();
                 if (result.next()) {
                     medias.add(new DbMedia(result.getString("ean"), result.getString("name"),
-                            result.getString("artist"), Category.valueOf(result.getString("category")),
-                            result.getString("label"), Genre.valueOf(result.getString("genre")),
-                            result.getDate("released"), result.getString("description"),
+                            result.getString("artist"), Type.valueOf(result.getString("type")),
+                            result.getString("label"), result.getString("category"),
                             result.getInt("price"), result.getInt("nrOfCopies")));
                 }
             }

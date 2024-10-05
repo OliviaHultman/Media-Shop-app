@@ -1,7 +1,6 @@
 package ui;
 
-import bo.Category;
-import bo.Genre;
+import bo.Type;
 
 import java.sql.Date;
 
@@ -9,23 +8,19 @@ public class MediaInfo {
     private String ean;
     private String name;
     private String artist;
-    private Category category;
+    private Type type;
     private String label;
-    private Genre genre;
-    private Date released;
-    private String description;
+    private String genre;
     private int price;
     private int nrOfCopies;
 
-    public MediaInfo(String ean, String name, String artist, Category category, String label, Genre genre, Date released, String description, int price, int nrOfCopies) {
+    public MediaInfo(String ean, String name, String artist, Type type, String label, String genre, int price, int nrOfCopies) {
         this.ean = ean;
         this.name = name;
         this.artist = artist;
-        this.category = category;
+        this.type = type;
         this.label = label;
         this.genre = genre;
-        this.released = released;
-        this.description = description;
         this.price = price;
         this.nrOfCopies = nrOfCopies;
     }
@@ -42,24 +37,16 @@ public class MediaInfo {
         return artist;
     }
 
-    public Category getCategory() {
-        return category;
+    public Type getType() {
+        return type;
     }
 
     public String getLabel() {
         return label;
     }
 
-    public Genre getGenre() {
+    public String getGenre() {
         return genre;
-    }
-
-    public Date getReleased() {
-        return released;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public int getPrice() {

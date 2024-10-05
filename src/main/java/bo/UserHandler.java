@@ -24,13 +24,12 @@ public class UserHandler {
                 userInfo.getPassword(), userInfo.getAuthority());
         for (MediaInfo mediaInfo : userInfo.getCart()) {
             user.addToCart(new Media(mediaInfo.getEan(), mediaInfo.getName(), mediaInfo.getArtist(),
-                    mediaInfo.getCategory(), mediaInfo.getLabel(), mediaInfo.getGenre(), mediaInfo.getReleased(),
-                    mediaInfo.getDescription(), mediaInfo.getPrice(), mediaInfo.getNrOfCopies()));
+                    mediaInfo.getType(), mediaInfo.getLabel(), mediaInfo.getGenre(), mediaInfo.getPrice(),
+                    mediaInfo.getNrOfCopies()));
         }
         user.addNewToCart(new Media(chosenMediaInfo.getEan(), chosenMediaInfo.getName(), chosenMediaInfo.getArtist(),
-                chosenMediaInfo.getCategory(), chosenMediaInfo.getLabel(), chosenMediaInfo.getGenre(),
-                chosenMediaInfo.getReleased(), chosenMediaInfo.getDescription(), chosenMediaInfo.getPrice(),
-                chosenMediaInfo.getNrOfCopies()));
+                chosenMediaInfo.getType(), chosenMediaInfo.getLabel(), chosenMediaInfo.getGenre(),
+                chosenMediaInfo.getPrice(), chosenMediaInfo.getNrOfCopies()));
     }
 
     public static void removeFromCart (MediaInfo chosenMediaInfo, UserInfo userInfo) {
@@ -38,12 +37,11 @@ public class UserHandler {
                 userInfo.getPassword(), userInfo.getAuthority());
         for (MediaInfo mediaInfo : userInfo.getCart()) {
             user.addToCart(new Media(mediaInfo.getEan(), mediaInfo.getName(), mediaInfo.getArtist(),
-                    mediaInfo.getCategory(), mediaInfo.getLabel(), mediaInfo.getGenre(), mediaInfo.getReleased(),
-                    mediaInfo.getDescription(), mediaInfo.getPrice(), mediaInfo.getNrOfCopies()));
+                    mediaInfo.getType(), mediaInfo.getLabel(), mediaInfo.getGenre(), mediaInfo.getPrice(),
+                    mediaInfo.getNrOfCopies()));
         }
         user.removeFromCart(new Media(chosenMediaInfo.getEan(), chosenMediaInfo.getName(), chosenMediaInfo.getArtist(),
-                chosenMediaInfo.getCategory(), chosenMediaInfo.getLabel(), chosenMediaInfo.getGenre(),
-                chosenMediaInfo.getReleased(), chosenMediaInfo.getDescription(), chosenMediaInfo.getPrice(),
-                chosenMediaInfo.getNrOfCopies()));
+                chosenMediaInfo.getType(), chosenMediaInfo.getLabel(), chosenMediaInfo.getGenre(),
+                chosenMediaInfo.getPrice(), chosenMediaInfo.getNrOfCopies()));
     }
 }

@@ -45,15 +45,17 @@
     <div class="product">
         <p><%= media.getName() %><br></p>
         <p><%= media.getArtist()%><br></p>
+        <p><%= media.getLabel()%><br></p>
+        <p><%=media.getType() + ", " + media.getGenre()%><br></p>
         <p><%= media.getPrice() + ":-"%><br></p>
         <% int nrOfCopies = media.getNrOfCopies(); %>
         <% if (nrOfCopies == 0) { %>
-        <p><%="Not in stock"%></p>
+        <p style="color: red"><%="Not in stock"%></p>
         <%} else {%>
         <%if (nrOfCopies <= 5) {%>
-        <p><%="Few left in stock"%></p>
+        <p style="color: gold "><%="Few left in stock"%></p>
         <%} else {%>
-        <p><%="In stock"%></p>
+        <p style="color: springgreen"> <%="In stock"%></p>
         <%}%>
             <form method="post" action="add-to-cart">
                 <input type="hidden" name="ean" value="<%= media.getEan()%>">

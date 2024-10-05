@@ -11,8 +11,8 @@ public class MediaHandler {
     private static ArrayList<MediaInfo> convertToMediaInfo(ArrayList<DbMedia> medias) {
         ArrayList<MediaInfo> mediasInfo = new ArrayList<>();
         for (Media media : medias) {
-            mediasInfo.add(new MediaInfo(media.getEan(), media.getName(), media.getArtist(), media.getCategory(),
-                    media.getLabel(), media.getGenre(), media.getReleased(), media.getDescription(), media.getPrice(),
+            mediasInfo.add(new MediaInfo(media.getEan(), media.getName(), media.getArtist(), media.getType(),
+                    media.getLabel(), media.getGenre(), media.getPrice(),
                     media.getNrOfCopies()));
         }
         return mediasInfo;
@@ -38,8 +38,8 @@ public class MediaHandler {
     public static ArrayList<MediaInfo> getUserMedias(String user) {
         ArrayList<MediaInfo> mediasInfo = new ArrayList<>();
         for (Media media : Media.getUserMedias(user)) {
-            mediasInfo.add(new MediaInfo(media.getEan(), media.getName(), media.getArtist(), media.getCategory(),
-                    media.getLabel(), media.getGenre(), media.getReleased(), media.getDescription(), media.getPrice(),
+            mediasInfo.add(new MediaInfo(media.getEan(), media.getName(), media.getArtist(), media.getType(),
+                    media.getLabel(), media.getGenre(), media.getPrice(),
                     media.getNrOfCopies()));
         }
         return mediasInfo;

@@ -1,5 +1,5 @@
 package bo;
 
-public enum Category {
+public enum Type {
     CD, LP
 }

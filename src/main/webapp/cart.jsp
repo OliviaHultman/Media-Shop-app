@@ -47,6 +47,8 @@
     <div class="product">
         <p><%= item.getMedia().getName() %><br></p>
         <p><%= item.getMedia().getArtist()%><br></p>
+        <p><%= item.getMedia().getLabel()%><br></p>
+        <p><%=item.getMedia().getType() + ", " + item.getMedia().getGenre()%><br></p>
         <p><%= item.getMedia().getPrice() + ":-"%><br></p>
         <p><%= "Number: " + item.getNrOfCopies()%></p>
         <% if (item.getNrOfCopies() > item.getMedia().getNrOfCopies()) {%>

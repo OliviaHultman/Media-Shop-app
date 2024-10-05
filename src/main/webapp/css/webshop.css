@@ -11,13 +11,13 @@ p {
 }
 
 .product {
-    width: 10%;
+    width: 20%;
     display: inline-block;
     border: 3px solid lightgray;
     margin: auto;
     padding: 20px 20px;
-    height: 300px;
-    overflow: hidden;
+    height: 400px;
+    overflow: auto;
 }
 
 .product p {
