@@ -22,7 +22,12 @@ public class WebshopServlet extends HttpServlet {
     private void getWebshop(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
         ArrayList<MediaInfo> mediasInfo = MediaHandler.getMedias();
         request.setAttribute("medias", mediasInfo);
-        request.getRequestDispatcher("webshop.jsp").forward(request, response);
+        String url = "webshop.jsp";
+        String message = request.getParameter("message");
+        if (message != null && message.equals("out")) {
+            url += "?message=" + message + "&ean=" + request.getParameter("ean");
+        }
+        request.getRequestDispatcher(url).forward(request, response);
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

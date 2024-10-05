@@ -31,15 +31,19 @@ public class AddToCartServlet extends HttpServlet {
         ArrayList<EanItemInfo> cart = (ArrayList<EanItemInfo>) session.getAttribute("cart");
         String ean = request.getParameter("ean");
         EanItemInfo eanItemInfo = findCartItem(cart, ean);
+        String url = "/webshop";
         if (eanItemInfo == null) {
             cart.add(new EanItemInfo(ean));
+        }
+        else if (eanItemInfo.getNrOfCopies() == Integer.parseInt(request.getParameter("nrOfCopies"))) {
+            url += "?message=out&ean=" + eanItemInfo.getEan();
         }
         else {
             eanItemInfo.incrementNrOfCopies();
         }
         session.setAttribute("cart", cart);
         response.setContentType("text/html");
-        response.getWriter().println("<meta http-equiv=\"Refresh\" content=\"0; URL=/webshop\">");
+        response.getWriter().println("<meta http-equiv=\"Refresh\" content=\"0; URL=" + url + "\">");
     }
 
     public void destroy() {

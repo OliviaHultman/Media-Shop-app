@@ -57,10 +57,14 @@
         <%}%>
             <form method="post" action="add-to-cart">
                 <input type="hidden" name="ean" value="<%= media.getEan()%>">
+                <input type="hidden" name="nrOfCopies" value="<%=nrOfCopies%>">
                 <button class="add" type="submit">Add to cart +</button>
             </form>
-
-        <%} %>
+        <% String message = request.getParameter("message");%>
+        <% if (message != null && message.equals("out") && request.getParameter("ean").equals(media.getEan())) {%>
+        <p class="warning">Not enough in stock</p>
+        <%}%>
+        <%}%>
     </div>
     <% } %>
 
