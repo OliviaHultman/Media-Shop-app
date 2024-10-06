@@ -28,11 +28,11 @@ public class MediaHandler {
             eans.add(orderItemInfo.getEan());
         }
         ArrayList<MediaInfo> mediasInfo = convertToMediaInfo(Media.getCartMedias(eans));
-        ArrayList<MediaItemInfo> orderInfo = new ArrayList<>();
+        ArrayList<MediaItemInfo> mediaItemsInfo = new ArrayList<>();
         for (int i = 0; i < orderItemsInfo.size(); i++) {
-            orderInfo.add(new MediaItemInfo(mediasInfo.get(i), orderItemsInfo.get(i).getNrOfCopies()));
+            mediaItemsInfo.add(new MediaItemInfo(mediasInfo.get(i), orderItemsInfo.get(i).getNrOfCopies()));
         }
-        return orderInfo;
+        return mediaItemsInfo;
     }
 
     public static boolean addMedia(MediaInfo mediaInfo) {
