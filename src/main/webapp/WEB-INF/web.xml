@@ -76,6 +76,22 @@
         <url-pattern>/users</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>orders</servlet-name>
+        <servlet-class>ui.OrdersServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>orders</servlet-name>
+        <url-pattern>/orders</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>products</servlet-name>
+        <servlet-class>ui.ProductsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>products</servlet-name>
+        <url-pattern>/products</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>signOut</servlet-name>
         <servlet-class>ui.SignOutServlet</servlet-class>
     </servlet>
@@ -83,5 +99,60 @@
         <servlet-name>signOut</servlet-name>
         <url-pattern>/sign-out</url-pattern>
     </servlet-mapping>
-
+    <servlet>
+        <servlet-name>changeStatus</servlet-name>
+        <servlet-class>ui.ChangeStatusServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>changeStatus</servlet-name>
+        <url-pattern>/change-status</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>addGenre</servlet-name>
+        <servlet-class>ui.AddGenreServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addGenre</servlet-name>
+        <url-pattern>/add-genre</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>addProduct</servlet-name>
+        <servlet-class>ui.AddProductServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addProduct</servlet-name>
+        <url-pattern>/add-product</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>getGenres</servlet-name>
+        <servlet-class>ui.GetGenresServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getGenres</servlet-name>
+        <url-pattern>/get-genres</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>editProduct</servlet-name>
+        <servlet-class>ui.EditProductServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>editProduct</servlet-name>
+        <url-pattern>/edit-product</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>deleteProduct</servlet-name>
+        <servlet-class>ui.DeleteProductServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteProduct</servlet-name>
+        <url-pattern>/delete-product</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>deleteGenre</servlet-name>
+        <servlet-class>ui.DeleteGenreServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteGenre</servlet-name>
+        <url-pattern>/delete-genre</url-pattern>
+    </servlet-mapping>
 </web-app>

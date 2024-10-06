@@ -1,7 +1,6 @@
 package bo;
 
 import db.DbMedia;
-import ui.EanItemInfo;
 import ui.MediaInfo;
 import ui.MediaItemInfo;
 import ui.OrderItemInfo;
@@ -36,13 +35,31 @@ public class MediaHandler {
         return orderInfo;
     }
 
-    public static ArrayList<MediaInfo> getUserMedias(String user) {
-        ArrayList<MediaInfo> mediasInfo = new ArrayList<>();
-        for (Media media : Media.getUserMedias(user)) {
-            mediasInfo.add(new MediaInfo(media.getEan(), media.getName(), media.getArtist(), media.getType(),
-                    media.getLabel(), media.getGenre(), media.getPrice(),
-                    media.getNrOfCopies()));
-        }
-        return mediasInfo;
+    public static boolean addMedia(MediaInfo mediaInfo) {
+        Media media = new Media(mediaInfo.getEan(), mediaInfo.getName(), mediaInfo.getArtist(), mediaInfo.getType(), mediaInfo.getLabel(),
+                mediaInfo.getGenre(), mediaInfo.getPrice(), mediaInfo.getNrOfCopies());
+        return media.addMedia();
+    }
+
+    public static boolean editMedia(MediaInfo mediaInfo) {
+        Media media = new Media(mediaInfo.getEan(), mediaInfo.getName(), mediaInfo.getArtist(), mediaInfo.getType(), mediaInfo.getLabel(),
+                mediaInfo.getGenre(), mediaInfo.getPrice(), mediaInfo.getNrOfCopies());
+        return media.editMedia();
+    }
+
+    public static boolean deleteMedia(String ean) {
+        return Media.deleteMedia(ean);
+    }
+
+    public static ArrayList<String> getGenres() {
+        return Media.getGenres();
+    }
+
+    public static boolean addGenre(String genre) {
+        return Media.addGenre(genre);
+    }
+
+    public static boolean deleteGenre(String genre) {
+        return Media.deleteGenre(genre);
     }
 }

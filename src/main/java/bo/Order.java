@@ -25,6 +25,11 @@ public class Order {
         this.status = status;
     }
 
+    protected Order(int orderNr, Status status) {
+        this.orderNr = orderNr;
+        this.status = status;
+    }
+
     protected Order(ArrayList<OrderItem> items, String email) {
         orderNr = nextOrderNr;
         nextOrderNr++;
@@ -34,11 +39,15 @@ public class Order {
     }
 
     public boolean createOrder() {
-        return DbOrder.insertMediaOrder(this);
+        return DbOrder.insertOrder(this);
     }
 
     public static ArrayList<DbOrder> getOrders() {
         return DbOrder.selectOrders();
+    }
+
+    public boolean changeStatus() {
+        return DbOrder.updateStatus(this);
     }
 
     public int getOrderNr() {

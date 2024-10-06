@@ -17,19 +17,19 @@ p {
     margin: auto;
     padding: 20px 20px;
     height: 400px;
-    overflow: hidden;
+    overflow: auto;
 }
 
-.user {
+.element_form {
     width: 20%;
     display: inline-block;
     border: 3px solid lightgray;
     margin: auto;
     padding: 20px 20px;
     height: 300px;
-    overflow: hidden;
+    overflow: auto;
 }
-.user input {
+.element_form input {
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -37,7 +37,7 @@ p {
     box-sizing: border-box;
 }
 
-.user select {
+.element_form select {
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -51,7 +51,7 @@ p {
     margin: auto;
     padding: 20px 20px;
     height: 350px;
-    overflow: hidden;
+    overflow: auto;
 }
 .profile input {
     width: 100%;
@@ -82,7 +82,7 @@ p {
 
 .menu {
     background-color: black;
-    overflow: hidden;
+    overflow: auto;
 }
 
 .menu a {
@@ -111,7 +111,7 @@ p {
     height: 25px;
 }
 
-.add {
+.element_button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
@@ -124,7 +124,7 @@ p {
     width: 200px;
 }
 
-.add_user {
+.side_button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
@@ -132,19 +132,18 @@ p {
     width: 200px;
 }
 
-.add:hover {
+.element_button:hover {
     background-color: #ddd;
 }
 
-.account {
+.center_form {
     width: 400px;
-    margin: 0 auto;
-    margin-top: 15%;
+    margin: 100px auto;
     border: 3px solid lightgray;
     padding: 16px;
 }
 
-.account a {
+.center_form a {
     float: right;
     color: black;
     padding: 10px;
@@ -154,7 +153,7 @@ p {
     color: red;
 }
 
-.account input {
+.center_form input {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -163,7 +162,7 @@ p {
     box-sizing: border-box;
 }
 
-.account select {
+.center_form select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -194,7 +193,7 @@ button:hover {
     opacity: 0.8;
 }
 
-.checkout {
+.checkout_button {
     float: right;
     width: 120px;
 }

@@ -24,7 +24,11 @@ public class UsersServlet extends HttpServlet {
         ArrayList<UserInfo> users = UserHandler.getUsers();
         request.setAttribute("users", users);
         UserInfo user = (UserInfo)request.getSession().getAttribute("user");
-        if (user != null && user.getAuthority() == Authority.ADMIN) {
+        if (user == null) {
+            response.setContentType("text/html");
+            response.getWriter().println("<meta http-equiv=\"Refresh\" content=\"0; URL=sign_in.jsp?return=/users\">");
+        }
+        else if (user.getAuthority() == Authority.ADMIN){
             request.getRequestDispatcher("users.jsp").forward(request, response);
         }
         else {

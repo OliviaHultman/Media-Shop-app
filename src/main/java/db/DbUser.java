@@ -56,6 +56,7 @@ public class DbUser extends User {
             return true;
         }
         catch (SQLException exception) {
+            exception.printStackTrace();
             return false;
         }
     }

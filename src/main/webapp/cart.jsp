@@ -69,7 +69,7 @@
         <%} else {%>
         <% link = "/checkout";%>
         <%}%>
-        <a href=<%=link%>><button class="checkout">Checkout</button></a>
+        <a href=<%=link%>><button class="checkout_button">Checkout</button></a>
     <%}%>
 </div>
 </body>

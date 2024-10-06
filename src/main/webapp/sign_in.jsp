@@ -12,9 +12,9 @@
     <link href="css/webshop.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-  <form action="sign-in" method="post" class="account">
+  <form action="sign-in" method="post" class="center_form">
     <label for="email">Email</label>
-    <input type="text" id="email" name="email" placeholder="Email" required>
+    <input type="email" id="email" name="email" placeholder="Email" required>
     <label for="password">Password</label>
     <input type="password" id="password" name="password" placeholder="Password" required>
     <a href="create_user.jsp?return=<%=request.getParameter("return")%>">Sign up</a>

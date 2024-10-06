@@ -1,10 +1,7 @@
 package bo;
 
-import db.DbOrder;
-import ui.EanItemInfo;
 import ui.OrderInfo;
 import ui.OrderItemInfo;
-import ui.UserInfo;
 
 import java.util.ArrayList;
 
@@ -20,7 +17,6 @@ public class OrderHandler {
 
     public static ArrayList<OrderInfo> getOrders() {
         ArrayList<OrderInfo> ordersInfo = new ArrayList<>();
-        ArrayList<OrderItemInfo> orderItemsInfo;
         OrderInfo orderInfo;
         for (Order order : Order.getOrders()) {
             orderInfo = new OrderInfo(order.getOrderNr(), order.getEmail(), order.getStatus());
@@ -30,5 +26,10 @@ public class OrderHandler {
             ordersInfo.add(orderInfo);
         }
         return ordersInfo;
+    }
+
+    public static boolean changeStatus(OrderInfo orderInfo) {
+        Order order = new Order(orderInfo.getOrderNr(), orderInfo.getStatus());
+        return order.changeStatus();
     }
 }

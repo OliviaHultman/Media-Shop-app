@@ -21,7 +21,7 @@ public class WebshopServlet extends HttpServlet {
     private void getWebshop(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
         ArrayList<MediaInfo> mediasInfo = MediaHandler.getMedias();
         request.setAttribute("medias", mediasInfo);
-        request.getRequestDispatcher("webshop.jsp").forward(request, response);
+        request.getRequestDispatcher("shop.jsp").forward(request, response);
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

@@ -39,7 +39,7 @@
 <body>
 <div class="content">
     <h1>My profile</h1>
-    <a href="/sign-out"><button class="add_user">Sign out</button></a>
+    <a href="/sign-out"><button class="side_button">Sign out</button></a>
     <div class="profile">
         <form action="update-user" method="post">
             <label for="email">Email</label>
@@ -53,7 +53,7 @@
             <% if (user.getAuthority() != Authority.ADMIN) { %>
             <input type="hidden" name="authority" value="<%=String.valueOf(user.getAuthority())%>">
             <%} else {%>
-            <label for="authority">Authority</label>
+            <label for="authority">Role</label>
             <select name="authority" id="authority" required>
                 <% for (Authority authority : Authority.values()) {%>
                 <% String selected = "";%>
@@ -67,7 +67,7 @@
             </select>
             <%}%>
             <input type="hidden" name="return" value="/profile.jsp">
-            <button type="submit" class="add">Update</button>
+            <button type="submit" class="element_button">Update</button>
         </form>
     </div>
 

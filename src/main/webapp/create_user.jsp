@@ -9,17 +9,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Sign up</title>
+    <title>Create user</title>
     <link href="css/webshop.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<form action="create-user" method="post" class="account">
+<form action="create-user" method="post" class="center_form">
     <label for="firstName">First name</label>
     <input type="text" id="firstName" name="firstName" placeholder="First name" required>
     <label for="lastName">Last name</label>
     <input type="text" id="lastName" name="lastName" placeholder="Last name" required>
     <label for="email">Email</label>
-    <input type="text" id="email" name="email" placeholder="Email" required>
+    <input type="email" id="email" name="email" placeholder="Email" required>
     <label for="password">Password</label>
     <input type="password" id="password" name="password" placeholder="Password" required>
     <% UserInfo user = (UserInfo) request.getSession().getAttribute("user");%>

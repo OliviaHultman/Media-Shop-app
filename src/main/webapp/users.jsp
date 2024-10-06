@@ -37,10 +37,10 @@
 <body>
 <div class="content">
   <h1>Users</h1>
-  <a href="/create_user.jsp?return=/users"><button class="add_user">Add new user +</button></a>
+  <a href="/create_user.jsp?return=/users"><button class="side_button">Add user +</button></a>
   <% ArrayList<UserInfo> users = (ArrayList<UserInfo>) request.getAttribute("users"); %>
   <% for (UserInfo userInfo : users) { %>
-  <div class="user">
+  <div class="element_form">
     <form action="update-user" method="post">
       <label for="email">Email</label>
       <input type="text" id="email" name="email" value="<%=userInfo.getEmail()%>" required readonly>
@@ -49,7 +49,7 @@
       <label for="lastName">Last name</label>
       <input name="lastName" id="lastName" value="<%=userInfo.getLastName()%>" required>
       <input type="hidden" name="password" value="<%=userInfo.getPassword()%>">
-      <label for="authority">Authority</label>
+      <label for="authority">Role</label>
       <select name="authority" id="authority" required>
         <% for (Authority authority : Authority.values()) {%>
         <% String selected = "";%>
@@ -62,7 +62,7 @@
         <%}%>
       </select>
       <input type="hidden" name="return" value="/users">
-      <button type="submit" class="add">Update</button>
+      <button type="submit" class="element_button">Update</button>
     </form>
   </div>
   <% } %>

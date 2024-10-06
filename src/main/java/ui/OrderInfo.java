@@ -17,6 +17,11 @@ public class OrderInfo {
         this.status = status;
     }
 
+    public OrderInfo(int orderNr, Status status) {
+        this.orderNr = orderNr;
+        this.status = status;
+    }
+
     public OrderInfo(int orderNr, String email, Status status) {
         this.orderNr = orderNr;
         items = new ArrayList<>();
