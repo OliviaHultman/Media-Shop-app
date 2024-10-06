@@ -10,8 +10,6 @@ public class User {
     private String lastName;
     private String password;
     private Authority authority;
-    private ArrayList<Media> cart;
-    private ArrayList<Media> ordered;
 
     protected User(String email, String firstName, String lastName, String password, Authority authority) {
         this.email = email;
@@ -19,8 +17,6 @@ public class User {
         this.lastName = lastName;
         this.password = password;
         this.authority = authority;
-        cart = new ArrayList<>();
-        ordered = new ArrayList<>();
     }
 
     protected User(String email, String firstName, String lastName, String password) {
@@ -64,9 +60,5 @@ public class User {
 
     public Authority getAuthority() {
         return authority;
-    }
-
-    public ArrayList<Media> getCart() {
-        return cart;
     }
 }
