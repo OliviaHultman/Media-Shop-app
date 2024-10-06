@@ -10,13 +10,6 @@ public class OrderInfo {
     private String email;
     private Status status;
 
-    protected OrderInfo(int orderNr, ArrayList<OrderItemInfo> items, String email, Status status) {
-        this.orderNr = orderNr;
-        this.items = items;
-        this.email = email;
-        this.status = status;
-    }
-
     public OrderInfo(int orderNr, Status status) {
         this.orderNr = orderNr;
         this.status = status;

@@ -69,8 +69,4 @@ public class User {
     public ArrayList<Media> getCart() {
         return cart;
     }
-
-    public ArrayList<Media> getOrdered() {
-        return ordered;
-    }
 }

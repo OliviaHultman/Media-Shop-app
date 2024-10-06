@@ -14,10 +14,6 @@ public class DbOrder extends Order {
     private final static String SELECT_ORDER = "SELECT MediaOrder.* FROM MediaOrder WHERE MediaOrder.orderNr = ?";
     private final static String UPDATE_STATUS = "UPDATE MediaOrder SET MediaOrder.Status = ? WHERE MediaOrder.orderNr = ?";
 
-    private DbOrder(int orderNr, ArrayList<OrderItem> items, String email, Status status) {
-        super(orderNr, items, email, status);
-    }
-
     private DbOrder(int orderNr, String email, Status status) {
         super(orderNr, email, status);
     }

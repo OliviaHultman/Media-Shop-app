@@ -47,8 +47,4 @@ public class UserInfo {
     public ArrayList<MediaInfo> getCart() {
         return cart;
     }
-
-    public ArrayList<MediaInfo> getOrdered() {
-        return ordered;
-    }
 }
