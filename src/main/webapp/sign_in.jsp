@@ -12,7 +12,7 @@
     <link href="css/webshop.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-  <form action="sign-in" method="post" class="center_form">
+  <form action="sign-in" method="post" class="center_element">
     <label for="email">Email</label>
     <input type="email" id="email" name="email" placeholder="Email" required>
     <label for="password">Password</label>

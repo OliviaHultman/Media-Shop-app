@@ -39,19 +39,21 @@
 <body>
 <div class="content">
     <h1>My profile</h1>
-    <a href="/sign-out"><button class="side_button">Sign out</button></a>
+    <div class="right_side_button">
+    <a href="/sign-out"><button class="right_side_button">Sign out</button></a>
+    </div>
     <div class="profile">
         <form action="update-user" method="post">
             <label for="email">Email</label>
-            <input type="text" id="email" name="email" value="<%=user.getEmail()%>" required readonly>
+            <input type="text" id="email" name="email" value="<%=user.getEmail()%>" required readonly><br>
             <label for="firstName">First name</label>
-            <input type="text" name="firstName" id="firstName" value="<%=user.getFirstName()%>" required>
+            <input type="text" name="firstName" id="firstName" value="<%=user.getFirstName()%>" required><br>
             <label for="lastName">Last name</label>
-            <input name="lastName" id="lastName" value="<%=user.getLastName()%>" required>
+            <input name="lastName" id="lastName" value="<%=user.getLastName()%>" required><br>
             <label for="password">Password</label>
-            <input type="password" name="password" id="password" value="<%=user.getPassword()%>" required>
+            <input type="password" name="password" id="password" value="<%=user.getPassword()%>" required><br>
             <% if (user.getAuthority() != Authority.ADMIN) { %>
-            <input type="hidden" name="authority" value="<%=String.valueOf(user.getAuthority())%>">
+            <input type="hidden" name="authority" value="<%=String.valueOf(user.getAuthority())%>"><br>
             <%} else {%>
             <label for="authority">Role</label>
             <select name="authority" id="authority" required>
@@ -64,7 +66,7 @@
                     <%=authority%>
                 </option>
                 <%}%>
-            </select>
+            </select><br>
             <%}%>
             <input type="hidden" name="return" value="/profile.jsp">
             <button type="submit" class="element_button">Update</button>

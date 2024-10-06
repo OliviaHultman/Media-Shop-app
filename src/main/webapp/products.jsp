@@ -40,20 +40,23 @@
 </header>
 <body>
 <div class="content">
-    <h1>Users</h1>
-    <a href="/get-genres"><button class="side_button">Add product +</button></a>
-    <a href="/add_genre.jsp"><button class="side_button">Add genre +</button></a>
+    <h1>Products</h1>
+    <div class="side_element">
+        <a href="/get-genres?return=add_product.jsp"><button class="left_side_button">Add product</button></a>
+        <a href="/get-genres?return=delete_genre.jsp"><button class="right_side_button">Delete genre</button></a>
+        <a href="/add_genre.jsp"><button class="right_side_button">Add genre</button></a>
+    </div>
     <% ArrayList<MediaInfo> products = (ArrayList<MediaInfo>) request.getAttribute("products"); %>
     <% for (MediaInfo product : products) { %>
-    <div class="element_form">
+    <div class="element">
         <form action="edit-product" method="post">
-            <label for="ean">Ean</label>
+            <b><label for="ean">EAN:</label></b>
             <input type="text" id="ean" name="ean" value="<%=product.getEan()%>" required readonly><br>
-            <label for="name">Name</label>
+            <b><label for="name">Name:</label></b>
             <input type="text" name="name" id="name" value="<%=product.getName()%>" required><br>
-            <label for="artist">Artist</label>
+            <b><label for="artist">Artist:</label></b>
             <input name="artist" id="artist" value="<%=product.getArtist()%>" required><br>
-            <label for="type">Type</label>
+            <b><label for="type">Type:</label></b>
             <select name="type" id="type" required>
                 <% for (Type type : Type.values()) {%>
                 <% String selected = "";%>
@@ -65,9 +68,9 @@
                 </option>
                 <%}%>
             </select><br>
-            <label for="label">Label</label>
+            <b><label for="label">Label:</label></b>
             <input name="label" id="label" value="<%=product.getLabel()%>" required><br>
-            <label for="genre">Genre</label>
+            <b><label for="genre">Genre:</label></b>
             <select name="genre" id="genre" required>
                 <% for (String genre : (ArrayList<String>) request.getAttribute("genres")) {%>
                 <% String selected = "";%>
@@ -79,17 +82,15 @@
                 </option>
                 <%}%>
             </select><br>
-            <label for="price">Price</label>
+            <b><label for="price">Price:</label></b>
             <input name="price" id="price" value="<%=product.getPrice()%>" required><br>
-            <label for="nrOfCopies">Nr in stock</label>
+            <b><label for="nrOfCopies">In stock:</label></b>
             <input name="nrOfCopies" id="nrOfCopies" value="<%=product.getNrOfCopies()%>" required>
             <button type="submit" class="element_button">Update</button>
+            <button type="submit" class="element_button" formaction="/delete-product">Delete</button></a>
         </form>
     </div>
     <% } %>
-    <div class="element_form">
-
-    </div>
 </div>
 </body>
 </html>

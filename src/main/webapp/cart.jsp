@@ -20,7 +20,8 @@
         <% if (user != null) {%>
         <% if (user.getAuthority() != Authority.CUSTOMER) {%>
         <a href="/orders" class="menu_left">Orders</a>
-        <%} else if (user.getAuthority() == Authority.ADMIN) {%>
+        <%}%>
+        <%if (user.getAuthority() == Authority.ADMIN) {%>
         <a href="/products" class="menu_left">Products</a>
         <a href="/users" class="menu_left">Users</a>
         <%}%>
@@ -41,18 +42,19 @@
     <% int totalPrice = 0; %>
     <% boolean inStock = true;%>
     <% for (MediaItemInfo item : order) { %>
-    <div class="product">
-        <p><%= item.getMedia().getName() %><br></p>
-        <p><%= item.getMedia().getArtist()%><br></p>
-        <p><%= item.getMedia().getLabel()%><br></p>
-        <p><%=item.getMedia().getType() + ", " + item.getMedia().getGenre()%><br></p>
-        <p><%= item.getMedia().getPrice() + ":-"%><br></p>
+    <div class="element">
+        <p><b>EAN:&emsp;</b><%=item.getMedia().getEan()%></p>
+        <p><b>Name:&emsp;</b><%= item.getMedia().getName() %><br></p>
+        <p><b>Artist:&emsp;</b><%= item.getMedia().getArtist()%><br></p>
+        <p><b>Label:&emsp;</b><%= item.getMedia().getLabel()%><br></p>
+        <p><b>Categories:&emsp;</b><%=item.getMedia().getType() + ", " + item.getMedia().getGenre()%><br></p>
+        <p><b>Price:&emsp;</b><%= item.getMedia().getPrice() + ":-"%><br></p>
         <form action="update-cart" method="post">
-            <label for="nrOfCopies">Number</label>
+            <b><label for="nrOfCopies">Number</label></b>
             <input type="text" id="nrOfCopies" name="nrOfCopiesCart" value="<%=item.getNrOfCopies()%>" required>
             <input type="hidden" name="nrOfCopiesStock" value="<%=item.getMedia().getNrOfCopies()%>">
             <input type="hidden" name="ean" value="<%=item.getMedia().getEan()%>">
-            <input type="submit" style="visibility: hidden">
+            <button type="submit" class="element_button">Update</button>
         </form>
         <% if (item.getNrOfCopies() > item.getMedia().getNrOfCopies()) {%>
         <p class="warning">Not enough in stock</p>
@@ -61,16 +63,20 @@
         <% totalPrice += (item.getMedia().getPrice() * item.getNrOfCopies()); %>
     </div>
     <% } %>
+    <div class="side_element">
     <h2><%= totalPrice + ":-"%></h2>
-    <% if (!order.isEmpty() && inStock) {%>
+    <% String disabled = "";%>
+    <% if (order.isEmpty() || !inStock) {%>
+    <%disabled = "disabled";%>
+    <%}%>
         <% String link;%>
         <% if (user == null) {%>
             <% link = "sign_in.jsp?return=/checkout";%>
         <%} else {%>
         <% link = "/checkout";%>
         <%}%>
-        <a href=<%=link%>><button class="checkout_button">Checkout</button></a>
-    <%}%>
+        <a href=<%=link%>><button class="right_side_button" <%=disabled%>>Checkout</button></a>
+    </div>
 </div>
 </body>
 </html>

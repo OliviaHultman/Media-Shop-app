@@ -13,7 +13,7 @@
     <link href="css/webshop.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<form action="add-product" method="post" class="center_form">
+<form action="add-product" method="post" class="center_element">
     <label for="ean">EAN</label>
     <input type="text" id="ean" name="ean" placeholder="EAN" required>
     <label for="name">Name</label>
@@ -39,7 +39,7 @@
     <label for="nrOfCopies">Nr in stock</label>
     <input type="number" id="nrOfCopies" name="nrOfCopies" placeholder="Nr in stock" required>
     <div>
-        <button type="submit">Submit</button>
+        <button type="submit">Add</button>
     </div>
     <% String message = request.getParameter("message");%>
     <% if ("duplicate".equals(message)) {%>

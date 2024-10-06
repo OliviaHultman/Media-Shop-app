@@ -13,7 +13,7 @@
     <link href="css/webshop.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<form action="create-user" method="post" class="center_form">
+<form action="create-user" method="post" class="center_element">
     <label for="firstName">First name</label>
     <input type="text" id="firstName" name="firstName" placeholder="First name" required>
     <label for="lastName">Last name</label>
@@ -33,7 +33,7 @@
     <%}%>
     <div>
         <input type="hidden" name="return" value=<%=request.getParameter("return")%>>
-        <button type="submit">Submit</button>
+        <button type="submit">Create</button>
     </div>
     <% String message = request.getParameter("message");%>
     <% if (message != null && message.equals("duplicate")) {%>

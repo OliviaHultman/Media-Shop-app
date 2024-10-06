@@ -6,55 +6,75 @@ h2 {
     text-align: right;
 }
 
-p {
+h3 {
+    text-align: center;
+    margin: 0;
+}
+
+.side_element {
+    overflow: auto;
+}
+
+.confirmation {
     text-align: center;
 }
 
-.product {
-    width: 20%;
+.element {
+    width: 300px;
     display: inline-block;
     border: 3px solid lightgray;
     margin: auto;
     padding: 20px 20px;
-    height: 400px;
     overflow: auto;
+    float: left;
 }
 
-.element_form {
-    width: 20%;
-    display: inline-block;
-    border: 3px solid lightgray;
-    margin: auto;
-    padding: 20px 20px;
-    height: 300px;
-    overflow: auto;
-}
-.element_form input {
+.element input {
     padding: 12px 20px;
     margin: 8px 0;
-    display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
 
-.element_form select {
+.element select {
     padding: 12px 20px;
     margin: 8px 0;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.order {
+    width: 300px;
     display: inline-block;
+    border: 3px solid lightgray;
+    margin: auto;
+    padding: 20px 20px;
+    overflow: auto;
+    float: left;
+    height: 300px;
+}
+
+.order input {
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.order select {
+    padding: 12px 20px;
+    margin: 8px 0;
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
 
 .profile {
-    width: 50%;
-    display: inline-block;
+    width: 300px;
     margin: auto;
     padding: 20px 20px;
-    height: 350px;
-    overflow: auto;
+    float: left
 }
 .profile input {
-    width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -67,17 +87,13 @@ p {
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
-    width: 100%;
     box-sizing: border-box;
-}
-
-.product p {
-    padding: 5px;
 }
 
 .content {
     width: 75%;
     margin: auto;
+    overflow: auto;
 }
 
 .menu {
@@ -117,33 +133,31 @@ p {
     cursor: pointer;
 }
 
-.profile button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    width: 200px;
-}
-
-.side_button {
+.right_side_button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
     float: right;
     width: 200px;
+    margin: 10px;
 }
 
-.element_button:hover {
-    background-color: #ddd;
+.left_side_button {
+    float: left;
+    font-size: 16px;
+    cursor: pointer;
+    width: 200px;
+    padding: 10px 20px;
 }
 
-.center_form {
+.center_element {
     width: 400px;
     margin: 100px auto;
     border: 3px solid lightgray;
     padding: 16px;
 }
 
-.center_form a {
+.center_element a {
     float: right;
     color: black;
     padding: 10px;
@@ -151,9 +165,11 @@ p {
 
 .warning {
     color: red;
+    margin: 0;
+    padding: 0;
 }
 
-.center_form input {
+.center_element input {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -162,18 +178,10 @@ p {
     box-sizing: border-box;
 }
 
-.center_form select {
+.center_element select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-.product input {
-    width: 50px;
-    padding: 5px 5px;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
@@ -191,10 +199,5 @@ button {
 
 button:hover {
     opacity: 0.8;
-}
-
-.checkout_button {
-    float: right;
-    width: 120px;
 }
 

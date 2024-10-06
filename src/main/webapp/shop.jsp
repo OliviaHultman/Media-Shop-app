@@ -42,17 +42,19 @@
     <h1>Shop</h1>
     <% ArrayList<MediaInfo> medias = (ArrayList<MediaInfo>) request.getAttribute("medias"); %>
     <% for (MediaInfo media : medias) { %>
-    <div class="product">
-        <p><%= media.getName() %><br></p>
-        <p><%= media.getArtist()%><br></p>
-        <p><%= media.getLabel()%><br></p>
-        <p><%=media.getType() + ", " + media.getGenre()%><br></p>
-        <p><%= media.getPrice() + ":-"%><br></p>
+    <div class="element">
+        <p><b>EAN:&emsp;</b><%=media.getEan()%></p>
+        <p><b>Name:&emsp;</b><%= media.getName() %><br></p>
+        <p><b>Artist:&emsp;</b><%= media.getArtist()%><br></p>
+        <p><b>Label:&emsp;</b><%= media.getLabel()%><br></p>
+        <p><b>Categories:&emsp;</b><%=media.getType() + ", " + media.getGenre()%><br></p>
+        <p><b>Price:&emsp;</b><%= media.getPrice() + ":-"%><br></p>
         <% int nrOfCopies = media.getNrOfCopies(); %>
-        <% if (nrOfCopies == 0) { %>
+        <% String disabled = "";%>
+        <% if (nrOfCopies <= 0) { %>
         <p style="color: red"><%="Not in stock"%></p>
-        <%} else {%>
-        <%if (nrOfCopies <= 5) {%>
+        <% disabled = "disabled";%>
+        <%} else if (nrOfCopies <= 5){%>
         <p style="color: gold "><%="Few left in stock"%></p>
         <%} else {%>
         <p style="color: springgreen"> <%="In stock"%></p>
@@ -60,12 +62,13 @@
             <form method="post" action="add-to-cart">
                 <input type="hidden" name="ean" value="<%= media.getEan()%>">
                 <input type="hidden" name="nrOfCopies" value="<%=nrOfCopies%>">
-                <button class="element_button" type="submit">Add to cart +</button>
+                <button class="element_button" type="submit" <%=disabled%>>Add to cart</button>
             </form>
         <% String message = request.getParameter("message");%>
         <% if (message != null && message.equals("out") && request.getParameter("ean").equals(media.getEan())) {%>
         <p class="warning">Not enough in stock</p>
-        <%}%>
+        <%} else {%>
+        <br>
         <%}%>
     </div>
     <% } %>

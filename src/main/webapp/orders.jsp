@@ -42,15 +42,15 @@
     <h1>Orders</h1>
     <% ArrayList<OrderInfo> orders = (ArrayList<OrderInfo>) request.getAttribute("orders"); %>
     <% for (OrderInfo order : orders) { %>
-    <div class="element_form">
-        <p><%= order.getOrderNr() %><br></p>
-        <p><%= order.getEmail()%><br></p>
-        <% ArrayList<OrderItemInfo> items = order.getItems(); %>
+    <div class="order">
+        <p><b>Order nr:&emsp;</b><%= order.getOrderNr() %></p>
+        <p><b>Email:&emsp;</b><%= order.getEmail()%></p>
+        <%ArrayList<OrderItemInfo> items = order.getItems();%>
         <% for (int i = 0; i < items.size(); i++) {%>
-            <%="Product" + i + ": " + items.get(i).getEan() + "\tNumber: " + items.get(i).getNrOfCopies()%>
+        <p><b>Product <%=i%>: </b><%=items.get(i).getEan()%>&emsp;<b>Number: </b><%=items.get(i).getNrOfCopies()%></p>
         <%}%>
         <form action="change-status" method="post">
-            <label for="status">Status</label>
+            <b><label for="status">Status:</label></b>
             <select name="status" id="status" required>
                 <% for (Status status : Status.values()) {%>
                 <% String selected = "";%>

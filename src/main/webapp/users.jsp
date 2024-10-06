@@ -37,19 +37,21 @@
 <body>
 <div class="content">
   <h1>Users</h1>
-  <a href="/create_user.jsp?return=/users"><button class="side_button">Add user +</button></a>
+  <div class="side_element">
+  <a href="/create_user.jsp?return=/users"><button class="left_side_button">Add user</button></a>
+  </div>
   <% ArrayList<UserInfo> users = (ArrayList<UserInfo>) request.getAttribute("users"); %>
   <% for (UserInfo userInfo : users) { %>
-  <div class="element_form">
+  <div class="element">
     <form action="update-user" method="post">
-      <label for="email">Email</label>
-      <input type="text" id="email" name="email" value="<%=userInfo.getEmail()%>" required readonly>
-      <label for="firstName">First name</label>
-      <input type="text" name="firstName" id="firstName" value="<%=userInfo.getFirstName()%>" required>
-      <label for="lastName">Last name</label>
-      <input name="lastName" id="lastName" value="<%=userInfo.getLastName()%>" required>
+      <b><label for="email">Email:</label></b>
+      <input type="text" id="email" name="email" value="<%=userInfo.getEmail()%>" required readonly><br>
+      <b><label for="firstName">First name:</label></b>
+      <input type="text" name="firstName" id="firstName" value="<%=userInfo.getFirstName()%>" required><br>
+      <b><label for="lastName">Last name:</label></b>
+      <input name="lastName" id="lastName" value="<%=userInfo.getLastName()%>" required><br>
       <input type="hidden" name="password" value="<%=userInfo.getPassword()%>">
-      <label for="authority">Role</label>
+        <b><label for="authority">Role:</label></b>
       <select name="authority" id="authority" required>
         <% for (Authority authority : Authority.values()) {%>
         <% String selected = "";%>
@@ -60,7 +62,7 @@
         <%=authority%>
         </option>
         <%}%>
-      </select>
+      </select><br>
       <input type="hidden" name="return" value="/users">
       <button type="submit" class="element_button">Update</button>
     </form>

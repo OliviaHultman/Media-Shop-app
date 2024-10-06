@@ -35,6 +35,6 @@
 </header>
 <body>
     <h1>Order confirmation</h1>
-    <p>Your order has been sent to us! We will handle it as soon as possible. </p>
+    <p class="confirmation">Your order has been sent to us! We will handle it as soon as possible. </p>
 </body>
 </html>

@@ -17,7 +17,7 @@ public class GetGenresServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setAttribute("genres",MediaHandler.getGenres());
-        request.getRequestDispatcher("add_product.jsp").forward(request, response);
+        request.getRequestDispatcher(request.getParameter("return")).forward(request, response);
     }
 
     public void destroy() {
