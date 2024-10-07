@@ -13,6 +13,7 @@ public class DbOrder extends Order {
     private final static String SELECT_ORDER_NRS = "SELECT DISTINCT MediaOrder.orderNr FROM MediaOrder";
     private final static String SELECT_ORDER = "SELECT MediaOrder.* FROM MediaOrder WHERE MediaOrder.orderNr = ?";
     private final static String UPDATE_STATUS = "UPDATE MediaOrder SET MediaOrder.Status = ? WHERE MediaOrder.orderNr = ?";
+    private final static String SELECT_HIGHEST_ORDER_NR = "SELECT MAX(MediaOrder.orderNr) FROM MediaOrder";
 
     private DbOrder(int orderNr, String email, Status status) {
         super(orderNr, email, status);
@@ -139,5 +140,29 @@ public class DbOrder extends Order {
                 exception.printStackTrace();
             }
         }
+    }
+
+    public static int selectHighestOrderNr() {
+        ResultSet result = null;
+        int highestOrderNr = 0;
+        try {
+            PreparedStatement selectHighestOrderNr = DbManager.getConnection().prepareStatement(SELECT_HIGHEST_ORDER_NR);
+            result = selectHighestOrderNr.executeQuery();
+            if (result.next()) {
+                highestOrderNr = result.getInt(1);
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        finally {
+            try {
+                if (result != null) {
+                    result.close();
+                }
+            } catch (SQLException exception) {
+                exception.printStackTrace();
+            }
+        }
+        return highestOrderNr;
     }
 }

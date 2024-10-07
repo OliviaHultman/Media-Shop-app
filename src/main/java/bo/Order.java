@@ -31,6 +31,9 @@ public class Order {
     }
 
     protected Order(ArrayList<OrderItem> items, String email) {
+        if (nextOrderNr == 0) {
+            nextOrderNr = DbOrder.selectHighestOrderNr() + 1;
+        }
         orderNr = nextOrderNr;
         nextOrderNr++;
         this.items = items;
