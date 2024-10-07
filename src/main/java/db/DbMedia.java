@@ -133,7 +133,6 @@ public class DbMedia extends Media {
 
     public static boolean updateMedia(Media media) {
             try {
-                System.out.print(media.getNrOfCopies());
                 PreparedStatement updateMedia = DbManager.getConnection().prepareStatement(UPDATE_MEDIA);
                 updateMedia.setString(1, media.getName());
                 updateMedia.setString(2, media.getArtist());

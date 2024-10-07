@@ -38,6 +38,10 @@ public class User {
         return DbUser.updateUser(this);
     }
 
+    public static boolean deleteUser(String email) {
+        return DbUser.deleteUser(email);
+    }
+
     public static ArrayList<DbUser> getUsers() {
         return DbUser.selectUsers();
     }

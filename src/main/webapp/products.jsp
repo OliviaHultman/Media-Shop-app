@@ -87,7 +87,7 @@
             <b><label for="nrOfCopies">In stock:</label></b>
             <input name="nrOfCopies" id="nrOfCopies" value="<%=product.getNrOfCopies()%>" required>
             <button type="submit" class="element_button">Update</button>
-            <button type="submit" class="element_button" formaction="/delete-product">Delete</button></a>
+            <button type="submit" class="element_button" formaction="/delete-product">Delete</button>
         </form>
     </div>
     <% } %>

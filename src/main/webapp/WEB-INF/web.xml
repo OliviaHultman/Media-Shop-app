@@ -155,4 +155,12 @@
         <servlet-name>deleteGenre</servlet-name>
         <url-pattern>/delete-genre</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>deleteUser</servlet-name>
+        <servlet-class>ui.DeleteUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteUser</servlet-name>
+        <url-pattern>/delete-user</url-pattern>
+    </servlet-mapping>
 </web-app>

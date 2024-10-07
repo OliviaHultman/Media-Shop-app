@@ -65,6 +65,7 @@
       </select><br>
       <input type="hidden" name="return" value="/users">
       <button type="submit" class="element_button">Update</button>
+      <button type="submit" class="element_button" formaction="/delete-user">Delete</button>
     </form>
   </div>
   <% } %>

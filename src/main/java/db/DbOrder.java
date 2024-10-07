@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class DbOrder extends Order {
     private final static String INSERT_ORDER = "INSERT INTO MediaOrder VALUES (?, ?, ?, ?, 'CONFIRMED')";
-    private final static String SELECT_DISTINCT_ORDER_NRS = "SELECT DISTINCT MediaOrder.orderNr FROM MediaOrder";
+    private final static String SELECT_ORDER_NRS = "SELECT DISTINCT MediaOrder.orderNr FROM MediaOrder";
     private final static String SELECT_ORDER = "SELECT MediaOrder.* FROM MediaOrder WHERE MediaOrder.orderNr = ?";
     private final static String UPDATE_STATUS = "UPDATE MediaOrder SET MediaOrder.Status = ? WHERE MediaOrder.orderNr = ?";
 
@@ -60,12 +60,12 @@ public class DbOrder extends Order {
         }
     }
 
-    public static ArrayList<Integer> selectDistinctOrderNr() {
+    public static ArrayList<Integer> selectOrderNrs() {
         ResultSet result = null;
         ArrayList<Integer> orderNrs = new ArrayList<>();
         try {
-            PreparedStatement selectDistinctOrderNrs = DbManager.getConnection().prepareStatement(SELECT_DISTINCT_ORDER_NRS);
-            result = selectDistinctOrderNrs.executeQuery();
+            PreparedStatement selectOrderNrs = DbManager.getConnection().prepareStatement(SELECT_ORDER_NRS);
+            result = selectOrderNrs.executeQuery();
             while (result.next()) {
                 orderNrs.add(result.getInt("orderNr"));
             }
@@ -88,7 +88,7 @@ public class DbOrder extends Order {
         ResultSet result = null;
         ArrayList<DbOrder> orders = new ArrayList<>();
         try {
-            ArrayList<Integer> orderNrs = selectDistinctOrderNr();
+            ArrayList<Integer> orderNrs = selectOrderNrs();
             PreparedStatement selectOrder = DbManager.getConnection().prepareStatement(SELECT_ORDER);
             for (int orderNr : orderNrs) {
                 selectOrder.setInt(1, orderNr);

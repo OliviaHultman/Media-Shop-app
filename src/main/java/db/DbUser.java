@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class DbUser extends User {
     final static String INSERT_USER = "INSERT INTO User VALUES (?, ?, ?, ?, ?)";
     final static String UPDATE_USER = "UPDATE User SET User.firstName = ?, User.lastName = ?, User.password = ?, User.authority = ? WHERE User.email = ?";
+    final static String DELETE_USER = "DELETE FROM User WHERE User.email = ?";
     final static String SELECT_USER = "SELECT User.* FROM User WHERE User.email = ? AND User.password = ?";
     final static String SELECT_USERS = "SELECT User.* FROM User";
 
@@ -70,6 +71,19 @@ public class DbUser extends User {
             updateUser.setString(4, String.valueOf(user.getAuthority()));
             updateUser.setString(5, user.getEmail());
             updateUser.executeUpdate();
+            return true;
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean deleteUser(String email) {
+        try {
+            PreparedStatement deleteUser = DbManager.getConnection().prepareStatement(DELETE_USER);
+            deleteUser.setString(1, email);
+            deleteUser.executeUpdate();
             return true;
         }
         catch (SQLException exception) {

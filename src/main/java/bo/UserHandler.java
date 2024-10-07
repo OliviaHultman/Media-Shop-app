@@ -28,6 +28,10 @@ public class UserHandler {
         return user.changeUser();
     }
 
+    public static boolean deleteUser(String email) {
+        return User.deleteUser(email);
+    }
+
     public static ArrayList<UserInfo> getUsers() {
         ArrayList<DbUser> users = User.getUsers();
         ArrayList<UserInfo> usersInfo = new ArrayList<>();
