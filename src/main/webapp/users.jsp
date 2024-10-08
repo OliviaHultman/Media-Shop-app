@@ -28,7 +28,7 @@
       <%}%>
       <a href="/cart" class="menu_right"><img src="img/cart.png"></a>
       <% if (user == null) {%>
-        <a href="sign_in.jsp?return=/users" class="menu_right">Sign in</a>
+        <a href="sign_in.jsp?return=users" class="menu_right">Sign in</a>
       <%} else {%>
         <a href="profile.jsp" class="menu_right"><%=user.getFirstName() + " " + user.getLastName()%></a>
       <%}%>
@@ -41,27 +41,27 @@
         <a href="/create_user.jsp?return=/users"><button class="left_side_button">Add user</button></a>
       </div>
       <% ArrayList<UserInfo> users = (ArrayList<UserInfo>) request.getAttribute("users"); %>
-      <% for (UserInfo user : users) { %>
+      <% for (UserInfo userInfo : users) { %>
         <div class="element">
           <form action="users?action=update" method="post">
             <b><label for="email">Email:</label></b>
-            <input type="text" id="email" name="email" value="<%=user.getEmail()%>" required readonly><br>
+            <input type="text" id="email" name="email" value="<%=userInfo.getEmail()%>" required readonly><br>
             <b><label for="firstName">First name:</label></b>
-            <input type="text" name="firstName" id="firstName" value="<%=user.getFirstName()%>" required><br>
+            <input type="text" name="firstName" id="firstName" value="<%=userInfo.getFirstName()%>" required><br>
             <b><label for="lastName">Last name:</label></b>
-            <input name="lastName" id="lastName" value="<%=user.getLastName()%>" required><br>
-            <input type="hidden" name="password" value="<%=user.getPassword()%>">
+            <input name="lastName" id="lastName" value="<%=userInfo.getLastName()%>" required><br>
+            <input type="hidden" name="password" value="<%=userInfo.getPassword()%>">
             <b><label for="authority">Role:</label></b>
             <select name="authority" id="authority" required>
               <% for (Authority authority : Authority.values()) {%>
                 <% String selected = "";%>
-                <% if (authority == user.getAuthority()) {%>
+                <% if (authority == userInfo.getAuthority()) {%>
                   <%selected = "selected";%>
                 <%}%>
                 <option value="<%=authority%>" <%=selected%>><%=authority%></option>
               <%}%>
             </select><br>
-            <input type="hidden" name="return" value="/users">
+            <input type="hidden" name="return" value="users">
             <button type="submit" class="element_button">Update</button>
             <button type="submit" class="element_button" formaction="users?action=delete">Delete</button>
           </form>

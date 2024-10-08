@@ -28,7 +28,7 @@
             <%}%>
             <a href="/cart" class="menu_right"><img src="img/cart.png"></a>
             <% if (user == null) {%>
-                <a href="sign_in.jsp?return=/cart" class="menu_right">Sign in</a>
+                <a href="sign_in.jsp?return=cart" class="menu_right">Sign in</a>
             <%} else {%>
                 <a href="profile.jsp" class="menu_right"><%=user.getFirstName() + " " + user.getLastName()%></a>
             <%}%>
@@ -71,9 +71,9 @@
                 <%}%>
                 <% String link;%>
                 <% if (user == null) {%>
-                    <% link = "sign_in.jsp?return=/checkout";%>
+                    <% link = "sign_in.jsp?return=checkout";%>
                 <%} else {%>
-                    <% link = "/cart?action=checkout";%>
+                    <% link = "/cart?action=send";%>
                 <%}%>
                 <a href=<%=link%>><button class="right_side_button" <%=disabled%>>Checkout</button></a>
             </div>

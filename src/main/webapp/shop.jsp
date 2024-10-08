@@ -29,7 +29,7 @@
             <%}%>
             <a href="/cart" class="menu_right"><img src="img/cart.png"></a>
             <% if (user == null) {%>
-                <a href="sign_in.jsp?return=/shop" class="menu_right">Sign in</a>
+                <a href="sign_in.jsp?return=shop" class="menu_right">Sign in</a>
             <%} else {%>
                 <a href="profile.jsp" class="menu_right"><%=user.getFirstName() + " " + user.getLastName()%></a>
             <%}%>
@@ -57,9 +57,10 @@
                     <%} else {%>
                         <p style="color: springgreen"> <%="In stock"%></p>
                     <%}%>
-                    <form method="post" action="add-to-cart">
+                    <form method="post" action="shop">
                         <input type="hidden" name="ean" value="<%= media.getEan()%>">
                         <input type="hidden" name="nrOfCopies" value="<%=nrOfCopies%>">
+                        <input type="hidden" name="action" value="add">
                         <button class="element_button" type="submit" <%=disabled%>>Add to cart</button>
                     </form>
                     <% String message = request.getParameter("message");%>

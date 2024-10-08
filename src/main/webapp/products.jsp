@@ -30,7 +30,7 @@
             <%}%>
             <a href="/cart" class="menu_right"><img src="img/cart.png"></a>
             <% if (user == null) {%>
-                <a href="sign_in.jsp?return=/products" class="menu_right">Sign in</a>
+                <a href="sign_in.jsp?return=products" class="menu_right">Sign in</a>
             <%} else {%>
                 <a href="profile.jsp" class="menu_right"><%=user.getFirstName() + " " + user.getLastName()%></a>
             <%}%>
@@ -40,8 +40,8 @@
         <div class="content">
             <h1>Products</h1>
             <div class="side_element">
-                <a href="/products?action=get-genres&return=add_product.jsp"><button class="left_side_button">Add product</button></a>
-                <a href="/products?action=get-genres&return=delete_genre.jsp"><button class="right_side_button">Delete genre</button></a>
+                <a href="/products?action=init&return=add_product.jsp"><button class="left_side_button">Add product</button></a>
+                <a href="/products?action=init&return=delete_genre.jsp"><button class="right_side_button">Delete genre</button></a>
                 <a href="/add_genre.jsp"><button class="right_side_button">Add genre</button></a>
             </div>
             <% ArrayList<MediaInfo> products = (ArrayList<MediaInfo>) request.getAttribute("products"); %>
