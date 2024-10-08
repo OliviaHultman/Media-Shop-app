@@ -41,60 +41,59 @@ public class UsersServlet extends HttpServlet {
                 request.getRequestDispatcher("users.jsp").forward(request, response);
             }
         }
-        switch (action) {
-            case "create":
-                Authority authority;
-                if (user != null && user.getAuthority() == Authority.ADMIN) {
-                    authority = Authority.valueOf(request.getParameter("authority"));
-                }
-                else {
-                    authority = Authority.CUSTOMER;
-                }
-                user = new UserInfo(request.getParameter("email"), request.getParameter("firstName"),
-                        request.getParameter("lastName"), request.getParameter("password"), authority);
-                boolean succeded = UserHandler.createUser(user);
-                String returnUrl = request.getParameter("return");
-                if (succeded) {
-                    if (!returnUrl.equals("users")) {
+        else {
+            switch (action) {
+                case "create":
+                    Authority authority;
+                    if (user != null && user.getAuthority() == Authority.ADMIN) {
+                        authority = Authority.valueOf(request.getParameter("authority"));
+                    } else {
+                        authority = Authority.CUSTOMER;
+                    }
+                    user = new UserInfo(request.getParameter("email"), request.getParameter("firstName"),
+                            request.getParameter("lastName"), request.getParameter("password"), authority);
+                    boolean succeded = UserHandler.createUser(user);
+                    String returnUrl = request.getParameter("return");
+                    if (succeded) {
+                        if (!returnUrl.equals("users")) {
+                            session.setAttribute("user", user);
+                        }
+                    } else {
+                        returnUrl = "create_user.jsp?return=" + returnUrl + "&message=duplicate";
+                    }
+                    response.sendRedirect(returnUrl);
+                    break;
+                case "update":
+                    user = new UserInfo(request.getParameter("email"), request.getParameter("firstName"),
+                            request.getParameter("lastName"), request.getParameter("password"),
+                            Authority.valueOf(request.getParameter("authority")));
+                    UserHandler.changeUser(user);
+                    returnUrl = request.getParameter("return");
+                    if (returnUrl.equals("profile.jsp")) {
                         session.setAttribute("user", user);
                     }
-                }
-                else {
-                    returnUrl = "create_user.jsp?return=" + returnUrl + "&message=duplicate";
-                }
-                response.sendRedirect(returnUrl);
-                break;
-            case "update":
-                user = new UserInfo(request.getParameter("email"), request.getParameter("firstName"),
-                        request.getParameter("lastName"), request.getParameter("password"),
-                        Authority.valueOf(request.getParameter("authority")));
-                UserHandler.changeUser(user);
-                returnUrl = request.getParameter("return");
-                if (returnUrl.equals("profile.jsp")) {
-                    session.setAttribute("user", user);
-                }
-                response.sendRedirect(returnUrl);
-                break;
-            case "delete":
-                UserHandler.deleteUser(request.getParameter("email"));
-                response.sendRedirect("users");
-                break;
-            case "sign-in":
-                user = UserHandler.getUser(request.getParameter("email"), request.getParameter("password"));
-                returnUrl = request.getParameter("return");
-                if (user != null) {
-                    session.setAttribute("user", user);
-                }
-                else {
-                    returnUrl = "sign_in.jsp?return=" + returnUrl + "&message=wrong";
-                }
-                response.sendRedirect(returnUrl);
-                break;
-            case "sign-out":
-                session.setAttribute("user", null);
-                response.sendRedirect("shop");
-                break;
-            default:
+                    response.sendRedirect(returnUrl);
+                    break;
+                case "delete":
+                    UserHandler.deleteUser(request.getParameter("email"));
+                    response.sendRedirect("users");
+                    break;
+                case "sign-in":
+                    user = UserHandler.getUser(request.getParameter("email"), request.getParameter("password"));
+                    returnUrl = request.getParameter("return");
+                    if (user != null) {
+                        session.setAttribute("user", user);
+                    } else {
+                        returnUrl = "sign_in.jsp?return=" + returnUrl + "&message=wrong";
+                    }
+                    response.sendRedirect(returnUrl);
+                    break;
+                case "sign-out":
+                    session.setAttribute("user", null);
+                    response.sendRedirect("shop");
+                    break;
+                default:
+            }
         }
     }
 

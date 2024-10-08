@@ -34,7 +34,7 @@ public class OrdersServlet extends HttpServlet {
             if (user == null) {
                 response.sendRedirect("sign_in.jsp?return=orders");
             }
-            else if (user.getAuthority() != Authority.ADMIN){
+            else if (user.getAuthority() == Authority.CUSTOMER){
                 response.sendError(HttpServletResponse.SC_FORBIDDEN);
             }
             else {
@@ -43,25 +43,26 @@ public class OrdersServlet extends HttpServlet {
                 request.getRequestDispatcher("orders.jsp").forward(request, response);
             }
         }
-        switch (action) {
-            case "create":
-                boolean succeded = OrderHandler.createOrder(cart, user.getEmail());
-                String returnUrl;
-                if (succeded) {
-                    session.setAttribute("cart", new ArrayList<>());
-                    returnUrl = "confirmation.jsp";
-                }
-                else {
-                    returnUrl = "cart";
-                }
-                response.sendRedirect(returnUrl);
-                break;
-            case "update":
-                OrderHandler.changeStatus(new OrderInfo(Integer.parseInt(request.getParameter("orderNr")),
-                        Status.valueOf(request.getParameter("status"))));
-                response.sendRedirect("orders");
-                break;
-            default:
+        else {
+            switch (action) {
+                case "create":
+                    boolean succeded = OrderHandler.createOrder(cart, user.getEmail());
+                    String returnUrl;
+                    if (succeded) {
+                        session.setAttribute("cart", new ArrayList<>());
+                        returnUrl = "confirmation.jsp";
+                    } else {
+                        returnUrl = "cart";
+                    }
+                    response.sendRedirect(returnUrl);
+                    break;
+                case "update":
+                    OrderHandler.changeStatus(new OrderInfo(Integer.parseInt(request.getParameter("orderNr")),
+                            Status.valueOf(request.getParameter("status"))));
+                    response.sendRedirect("orders");
+                    break;
+                default:
+            }
         }
     }
 
