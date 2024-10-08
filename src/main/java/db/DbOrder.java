@@ -106,6 +106,15 @@ public class DbOrder extends Order {
         catch (SQLException exception) {
             exception.printStackTrace();
         }
+        finally {
+            try {
+                if (result != null) {
+                    result.close();
+                }
+            } catch (SQLException exception) {
+                exception.printStackTrace();
+            }
+        }
         return orders;
     }
 

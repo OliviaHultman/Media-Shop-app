@@ -80,7 +80,7 @@ public class DbMedia extends Media {
         return medias;
     }
 
-    public static boolean updateNrOfCopies(String media, int nrOfCopies) {
+    protected static boolean updateNrOfCopies(String media, int nrOfCopies) {
         ResultSet result = null;
         try {
             PreparedStatement selectNrOfCopies = DbManager.getConnection().prepareStatement(SELECT_NR_OF_COPIES);
