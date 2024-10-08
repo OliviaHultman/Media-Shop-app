@@ -1,5 +1,6 @@
 <%@ page import="ui.UserInfo" %>
-<%@ page import="bo.Authority" %><%--
+<%@ page import="bo.Role" %>
+<%@ page import="bo.Role" %><%--
   Created by IntelliJ IDEA.
   User: Olivia Hultman
   Date: 2024-10-04
@@ -23,11 +24,11 @@
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Password" required>
             <% UserInfo user = (UserInfo) request.getSession().getAttribute("user");%>
-            <%if (user != null && user.getAuthority() == Authority.ADMIN) {%>
-                <label for="authority">Authority</label>
-                <select name="authority" id="authority" required>
-                    <% for (Authority authority : Authority.values()) {%>
-                        <option value="<%=authority%>"><%=authority%></option>
+            <%if (user != null && user.getRole() == Role.ADMIN) {%>
+                <label for="role">Role</label>
+                <select name="role" id="role" required>
+                    <% for (Role role : Role.values()) {%>
+                        <option value="<%=role%>"><%=role%></option>
                     <%}%>
                 </select>
             <%}%>

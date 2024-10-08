@@ -1,9 +1,8 @@
 package ui;
 
-import bo.Authority;
+import bo.Role;
 import bo.MediaHandler;
 import bo.Type;
-import bo.UserHandler;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -33,7 +32,7 @@ public class ProductsServlet extends HttpServlet {
             if (user == null) {
                 response.sendRedirect("sign_in.jsp?return=/products");
             }
-            else if (user.getAuthority() != Authority.ADMIN){
+            else if (user.getRole() != Role.ADMIN){
                 response.sendError(HttpServletResponse.SC_FORBIDDEN);
             }
             else {
@@ -67,7 +66,7 @@ public class ProductsServlet extends HttpServlet {
                     }
                     break;
                 case "update":
-                    MediaHandler.editMedia(new MediaInfo(request.getParameter("ean"),
+                    MediaHandler.updateMedia(new MediaInfo(request.getParameter("ean"),
                             request.getParameter("name"), request.getParameter("artist"),
                             Type.valueOf(request.getParameter("type")), request.getParameter("label"),
                             request.getParameter("genre"), Integer.valueOf(request.getParameter("price")),

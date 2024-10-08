@@ -1,5 +1,5 @@
 <%@ page import="ui.UserInfo" %>
-<%@ page import="bo.Authority" %><%--
+<%@ page import="bo.Role" %><%--
   Created by IntelliJ IDEA.
   User: Olivia Hultman
   Date: 2024-10-04
@@ -20,10 +20,10 @@
                 <a href="/shop" class="menu_left">Shop</a>
                 <% UserInfo user = (UserInfo) request.getSession().getAttribute("user"); %>
                 <% if (user != null) {%>
-                    <% if (user.getAuthority() != Authority.CUSTOMER) {%>
+                    <% if (user.getRole() != Role.CUSTOMER) {%>
                         <a href="/orders" class="menu_left">Orders</a>
                     <%}%>
-                    <%if (user.getAuthority() == Authority.ADMIN) {%>
+                    <%if (user.getRole() == Role.ADMIN) {%>
                         <a href="/products" class="menu_left">Products</a>
                         <a href="/users" class="menu_left">Users</a>
                     <%}%>
@@ -52,17 +52,17 @@
                         <input name="lastName" id="lastName" value="<%=user.getLastName()%>" required><br>
                         <label for="password">Password</label>
                         <input type="password" name="password" id="password" value="<%=user.getPassword()%>" required><br>
-                        <% if (user.getAuthority() != Authority.ADMIN) { %>
-                            <input type="hidden" name="authority" value="<%=String.valueOf(user.getAuthority())%>"><br>
+                        <% if (user.getRole() != Role.ADMIN) { %>
+                            <input type="hidden" name="role" value="<%=String.valueOf(user.getRole())%>"><br>
                         <%} else {%>
-                            <label for="authority">Role</label>
-                            <select name="authority" id="authority" required>
-                                <% for (Authority authority : Authority.values()) {%>
+                            <label for="role">Role</label>
+                            <select name="role" id="role" required>
+                                <% for (Role role : Role.values()) {%>
                                     <% String selected = "";%>
-                                    <% if (authority == user.getAuthority()) {%>
+                                    <% if (role == user.getRole()) {%>
                                         <%selected = "selected";%>
                                     <%}%>
-                                    <option value="<%=authority%>" <%=selected%>><%=authority%></option>
+                                    <option value="<%=role%>" <%=selected%>><%=role%></option>
                                 <%}%>
                             </select><br>
                         <%}%>

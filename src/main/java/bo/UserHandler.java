@@ -10,7 +10,7 @@ public class UserHandler {
         User user = User.getUser(email, password);
         if (user != null) {
             return new UserInfo(user.getEmail(), user.getFirstName(), user.getLastName(), user.getPassword(),
-                    user.getAuthority());
+                    user.getRole());
         }
         else {
             return null;
@@ -18,13 +18,13 @@ public class UserHandler {
     }
 
     public static boolean createUser(UserInfo userInfo) {
-        User user = new User(userInfo.getEmail(), userInfo.getFirstName(), userInfo.getLastName(), userInfo.getPassword(), userInfo.getAuthority());
+        User user = new User(userInfo.getEmail(), userInfo.getFirstName(), userInfo.getLastName(), userInfo.getPassword(), userInfo.getRole());
         return user.createUser();
     }
 
-    public static boolean changeUser(UserInfo userInfo) {
-        User user = new User(userInfo.getEmail(), userInfo.getFirstName(), userInfo.getLastName(), userInfo.getPassword(), userInfo.getAuthority());
-        return user.changeUser();
+    public static boolean updateUser(UserInfo userInfo) {
+        User user = new User(userInfo.getEmail(), userInfo.getFirstName(), userInfo.getLastName(), userInfo.getPassword(), userInfo.getRole());
+        return user.updateUser();
     }
 
     public static boolean deleteUser(String email) {
@@ -35,7 +35,7 @@ public class UserHandler {
         ArrayList<DbUser> users = User.getUsers();
         ArrayList<UserInfo> usersInfo = new ArrayList<>();
         for (User user : users) {
-            usersInfo.add(new UserInfo(user.getEmail(), user.getFirstName(), user.getLastName(), user.getPassword(), user.getAuthority()));
+            usersInfo.add(new UserInfo(user.getEmail(), user.getFirstName(), user.getLastName(), user.getPassword(), user.getRole()));
         }
         return usersInfo;
     }

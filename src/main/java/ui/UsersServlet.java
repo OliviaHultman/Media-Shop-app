@@ -1,7 +1,6 @@
 package ui;
 
-import bo.Authority;
-import bo.MediaHandler;
+import bo.Role;
 import bo.UserHandler;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -32,7 +31,7 @@ public class UsersServlet extends HttpServlet {
             if (user == null) {
                 response.sendRedirect("sign_in.jsp?return=/users");
             }
-            else if (user.getAuthority() != Authority.ADMIN) {
+            else if (user.getRole() != Role.ADMIN) {
                 response.sendError(HttpServletResponse.SC_FORBIDDEN);
             }
             else {
@@ -44,14 +43,14 @@ public class UsersServlet extends HttpServlet {
         else {
             switch (action) {
                 case "create":
-                    Authority authority;
-                    if (user != null && user.getAuthority() == Authority.ADMIN) {
-                        authority = Authority.valueOf(request.getParameter("authority"));
+                    Role role;
+                    if (user != null && user.getRole() == Role.ADMIN) {
+                        role = Role.valueOf(request.getParameter("role"));
                     } else {
-                        authority = Authority.CUSTOMER;
+                        role = Role.CUSTOMER;
                     }
                     user = new UserInfo(request.getParameter("email"), request.getParameter("firstName"),
-                            request.getParameter("lastName"), request.getParameter("password"), authority);
+                            request.getParameter("lastName"), request.getParameter("password"), role);
                     boolean succeded = UserHandler.createUser(user);
                     String returnUrl = request.getParameter("return");
                     if (succeded) {
@@ -66,8 +65,8 @@ public class UsersServlet extends HttpServlet {
                 case "update":
                     user = new UserInfo(request.getParameter("email"), request.getParameter("firstName"),
                             request.getParameter("lastName"), request.getParameter("password"),
-                            Authority.valueOf(request.getParameter("authority")));
-                    UserHandler.changeUser(user);
+                            Role.valueOf(request.getParameter("role")));
+                    UserHandler.updateUser(user);
                     returnUrl = request.getParameter("return");
                     if (returnUrl.equals("profile.jsp")) {
                         session.setAttribute("user", user);

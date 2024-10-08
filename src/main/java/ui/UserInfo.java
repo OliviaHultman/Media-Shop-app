@@ -1,23 +1,20 @@
 package ui;
 
-import bo.Authority;
-import bo.Media;
-
-import java.util.ArrayList;
+import bo.Role;
 
 public class UserInfo {
     private String email;
     private String firstName;
     private String lastName;
     private String password;
-    private Authority authority;
+    private Role role;
 
-    public UserInfo( String email, String firstName, String lastName, String password, Authority authority) {
+    public UserInfo( String email, String firstName, String lastName, String password, Role role) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-        this.authority = authority;
+        this.role = role;
     }
 
     public String getEmail() {
@@ -36,7 +33,7 @@ public class UserInfo {
         return password;
     }
 
-    public Authority getAuthority() {
-        return authority;
+    public Role getRole() {
+        return role;
     }
 }

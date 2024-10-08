@@ -49,7 +49,7 @@ public class Order {
         return DbOrder.selectOrders();
     }
 
-    public boolean changeStatus() {
+    public boolean updateStatus() {
         return DbOrder.updateStatus(this);
     }
 

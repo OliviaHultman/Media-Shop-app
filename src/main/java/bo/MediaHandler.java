@@ -41,10 +41,10 @@ public class MediaHandler {
         return media.addMedia();
     }
 
-    public static boolean editMedia(MediaInfo mediaInfo) {
+    public static boolean updateMedia(MediaInfo mediaInfo) {
         Media media = new Media(mediaInfo.getEan(), mediaInfo.getName(), mediaInfo.getArtist(), mediaInfo.getType(), mediaInfo.getLabel(),
                 mediaInfo.getGenre(), mediaInfo.getPrice(), mediaInfo.getNrOfCopies());
-        return media.editMedia();
+        return media.updateMedia();
     }
 
     public static boolean deleteMedia(String ean) {

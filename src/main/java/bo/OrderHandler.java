@@ -28,8 +28,8 @@ public class OrderHandler {
         return ordersInfo;
     }
 
-    public static boolean changeStatus(OrderInfo orderInfo) {
+    public static boolean updateStatus(OrderInfo orderInfo) {
         Order order = new Order(orderInfo.getOrderNr(), orderInfo.getStatus());
-        return order.changeStatus();
+        return order.updateStatus();
     }
 }

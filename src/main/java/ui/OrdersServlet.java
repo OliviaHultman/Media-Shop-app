@@ -1,9 +1,8 @@
 package ui;
 
-import bo.Authority;
+import bo.Role;
 import bo.OrderHandler;
 import bo.Status;
-import bo.UserHandler;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -34,7 +33,7 @@ public class OrdersServlet extends HttpServlet {
             if (user == null) {
                 response.sendRedirect("sign_in.jsp?return=orders");
             }
-            else if (user.getAuthority() == Authority.CUSTOMER){
+            else if (user.getRole() == Role.CUSTOMER){
                 response.sendError(HttpServletResponse.SC_FORBIDDEN);
             }
             else {
@@ -57,7 +56,7 @@ public class OrdersServlet extends HttpServlet {
                     response.sendRedirect(returnUrl);
                     break;
                 case "update":
-                    OrderHandler.changeStatus(new OrderInfo(Integer.parseInt(request.getParameter("orderNr")),
+                    OrderHandler.updateStatus(new OrderInfo(Integer.parseInt(request.getParameter("orderNr")),
                             Status.valueOf(request.getParameter("status"))));
                     response.sendRedirect("orders");
                     break;

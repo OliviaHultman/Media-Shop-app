@@ -1,6 +1,7 @@
 <%@ page import="ui.UserInfo" %>
-<%@ page import="bo.Authority" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="bo.Role" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="bo.Role" %><%--
   Created by IntelliJ IDEA.
   User: Olivia Hultman
   Date: 2024-10-04
@@ -18,10 +19,10 @@
       <a href="/shop" class="menu_left">Shop</a>
       <% UserInfo user = (UserInfo) request.getSession().getAttribute("user"); %>
       <% if (user != null) {%>
-        <% if (user.getAuthority() != Authority.CUSTOMER) {%>
+        <% if (user.getRole() != Role.CUSTOMER) {%>
           <a href="/orders" class="menu_left">Orders</a>
         <%}%>
-        <%if (user.getAuthority() == Authority.ADMIN) {%>
+        <%if (user.getRole() == Role.ADMIN) {%>
           <a href="/products" class="menu_left">Products</a>
           <a href="/users" class="menu_left">Users</a>
         <%}%>
@@ -51,14 +52,14 @@
             <b><label for="lastName">Last name:</label></b>
             <input name="lastName" id="lastName" value="<%=userInfo.getLastName()%>" required><br>
             <input type="hidden" name="password" value="<%=userInfo.getPassword()%>">
-            <b><label for="authority">Role:</label></b>
-            <select name="authority" id="authority" required>
-              <% for (Authority authority : Authority.values()) {%>
+            <b><label for="role">Role:</label></b>
+            <select name="role" id="role" required>
+              <% for (Role role : Role.values()) {%>
                 <% String selected = "";%>
-                <% if (authority == userInfo.getAuthority()) {%>
+                <% if (role == userInfo.getRole()) {%>
                   <%selected = "selected";%>
                 <%}%>
-                <option value="<%=authority%>" <%=selected%>><%=authority%></option>
+                <option value="<%=role%>" <%=selected%>><%=role%></option>
               <%}%>
             </select><br>
             <input type="hidden" name="return" value="users">

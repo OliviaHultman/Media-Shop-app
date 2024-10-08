@@ -9,14 +9,14 @@ public class User {
     private String firstName;
     private String lastName;
     private String password;
-    private Authority authority;
+    private Role role;
 
-    protected User(String email, String firstName, String lastName, String password, Authority authority) {
+    protected User(String email, String firstName, String lastName, String password, Role role) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-        this.authority = authority;
+        this.role = role;
     }
 
     protected User(String email, String firstName, String lastName, String password) {
@@ -34,7 +34,7 @@ public class User {
         return DbUser.insertUser(this);
     }
 
-    public boolean changeUser() {
+    public boolean updateUser() {
         return DbUser.updateUser(this);
     }
 
@@ -62,7 +62,7 @@ public class User {
         return password;
     }
 
-    public Authority getAuthority() {
-        return authority;
+    public Role getRole() {
+        return role;
     }
 }

@@ -1,5 +1,5 @@
 package bo;
 
-public enum Authority {
+public enum Role {
         CUSTOMER, ADMIN, WAREHOUSE
 }

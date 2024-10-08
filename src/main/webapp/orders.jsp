@@ -1,5 +1,5 @@
 <%@ page import="ui.UserInfo" %>
-<%@ page import="bo.Authority" %>
+<%@ page import="bo.Role" %>
 <%@ page import="ui.OrderInfo" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="ui.OrderItemInfo" %>
@@ -21,10 +21,10 @@
             <a href="/shop" class="menu_left">Shop</a>
             <% UserInfo user = (UserInfo) request.getSession().getAttribute("user"); %>
             <% if (user != null) {%>
-                <% if (user.getAuthority() != Authority.CUSTOMER) {%>
+                <% if (user.getRole() != Role.CUSTOMER) {%>
                     <a href="/orders" class="menu_left">Orders</a>
                 <%}%>
-                <%if (user.getAuthority() == Authority.ADMIN) {%>
+                <%if (user.getRole() == Role.ADMIN) {%>
                     <a href="/products" class="menu_left">Products</a>
                     <a href="/users" class="menu_left">Users</a>
                 <%}%>

@@ -37,7 +37,7 @@ public class Media {
         return DbMedia.insertMedia(this);
     }
 
-    public boolean editMedia() {
+    public boolean updateMedia() {
         return DbMedia.updateMedia(this);
     }
 
