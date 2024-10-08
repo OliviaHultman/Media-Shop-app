@@ -38,7 +38,7 @@
             <input type="number" id="price" name="price" placeholder="Price" required>
             <label for="nrOfCopies">Nr in stock</label>
             <input type="number" id="nrOfCopies" name="nrOfCopies" placeholder="Nr in stock" required>
-            <input type="hidden" name="action" value="add-product">
+            <input type="hidden" name="action" value="add">
             <div>
                 <button type="submit">Add</button>
             </div>

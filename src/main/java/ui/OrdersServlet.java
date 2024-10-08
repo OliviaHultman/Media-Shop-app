@@ -30,6 +30,19 @@ public class OrdersServlet extends HttpServlet {
         UserInfo user = (UserInfo) session.getAttribute("user");
         ArrayList<OrderItemInfo> cart = (ArrayList<OrderItemInfo>) session.getAttribute("cart");
         String action = request.getParameter("action");
+        if (action == null) {
+            if (user == null) {
+                response.sendRedirect("sign_in.jsp?return=orders");
+            }
+            else if (user.getAuthority() != Authority.ADMIN){
+                response.sendError(HttpServletResponse.SC_FORBIDDEN);
+            }
+            else {
+                ArrayList<OrderInfo> orders = OrderHandler.getOrders();
+                request.setAttribute("orders", orders);
+                request.getRequestDispatcher("orders.jsp").forward(request, response);
+            }
+        }
         switch (action) {
             case "create":
                 boolean succeded = OrderHandler.createOrder(cart, user.getEmail());
@@ -49,17 +62,6 @@ public class OrdersServlet extends HttpServlet {
                 response.sendRedirect("orders");
                 break;
             default:
-                ArrayList<OrderInfo> orders = OrderHandler.getOrders();
-                request.setAttribute("orders", orders);
-                if (user == null) {
-                    response.sendRedirect("sign_in.jsp?return=orders");
-                }
-                else if (user.getAuthority() == Authority.ADMIN){
-                    request.getRequestDispatcher("orders.jsp").forward(request, response);
-                }
-                else {
-                    response.sendError(HttpServletResponse.SC_FORBIDDEN);
-                }
         }
     }
 

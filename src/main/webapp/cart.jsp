@@ -73,7 +73,7 @@
                 <% if (user == null) {%>
                     <% link = "sign_in.jsp?return=checkout";%>
                 <%} else {%>
-                    <% link = "/cart?action=send";%>
+                    <% link = "/orders?action=create";%>
                 <%}%>
                 <a href=<%=link%>><button class="right_side_button" <%=disabled%>>Checkout</button></a>
             </div>

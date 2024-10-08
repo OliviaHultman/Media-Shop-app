@@ -35,11 +35,16 @@ public class CartServlet extends HttpServlet {
         HttpSession session = request.getSession();
         ArrayList<OrderItemInfo> cart = (ArrayList<OrderItemInfo>) session.getAttribute("cart");
         String action = request.getParameter("action");
+        if (action == null) {
+            ArrayList<MediaItemInfo> order = MediaHandler.getCartMedias(cart);
+            request.setAttribute("order", order);
+            request.getRequestDispatcher("cart.jsp").forward(request, response);
+        }
         switch (action) {
             case "add":
                 String ean = request.getParameter("ean");
                 OrderItemInfo item = findCartItem(cart, ean);
-                String returnUrl = "webshop";
+                String returnUrl = "shop";
                 if (item == null) {
                     cart.add(new OrderItemInfo(ean));
                 }
@@ -70,10 +75,7 @@ public class CartServlet extends HttpServlet {
                 session.setAttribute("cart", cart);
                 response.sendRedirect(returnUrl);
                 break;
-            default:
-                ArrayList<MediaItemInfo> order = MediaHandler.getCartMedias(cart);
-                request.setAttribute("order", order);
-                request.getRequestDispatcher("cart.jsp").forward(request, response);
+
         }
     }
 

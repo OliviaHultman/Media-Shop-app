@@ -28,6 +28,19 @@ public class UsersServlet extends HttpServlet {
         HttpSession session = request.getSession();
         UserInfo user = (UserInfo)session.getAttribute("user");
         String action = request.getParameter("action");
+        if (action == null) {
+            if (user == null) {
+                response.sendRedirect("sign_in.jsp?return=/users");
+            }
+            else if (user.getAuthority() != Authority.ADMIN) {
+                response.sendError(HttpServletResponse.SC_FORBIDDEN);
+            }
+            else {
+                ArrayList<UserInfo> users = UserHandler.getUsers();
+                request.setAttribute("users", users);
+                request.getRequestDispatcher("users.jsp").forward(request, response);
+            }
+        }
         switch (action) {
             case "create":
                 Authority authority;
@@ -37,13 +50,13 @@ public class UsersServlet extends HttpServlet {
                 else {
                     authority = Authority.CUSTOMER;
                 }
-                UserInfo newUser = new UserInfo(request.getParameter("email"), request.getParameter("firstName"),
+                user = new UserInfo(request.getParameter("email"), request.getParameter("firstName"),
                         request.getParameter("lastName"), request.getParameter("password"), authority);
-                boolean succeded = UserHandler.createUser(newUser);
+                boolean succeded = UserHandler.createUser(user);
                 String returnUrl = request.getParameter("return");
                 if (succeded) {
-                    if (user == null) {
-                        session.setAttribute("user", newUser);
+                    if (!returnUrl.equals("users")) {
+                        session.setAttribute("user", user);
                     }
                 }
                 else {
@@ -52,11 +65,13 @@ public class UsersServlet extends HttpServlet {
                 response.sendRedirect(returnUrl);
                 break;
             case "update":
-                UserHandler.changeUser(new UserInfo(request.getParameter("email"),
-                        request.getParameter("firstName"), request.getParameter("lastName"), request.getParameter("password"), Authority.valueOf(request.getParameter("authority"))));
+                user = new UserInfo(request.getParameter("email"), request.getParameter("firstName"),
+                        request.getParameter("lastName"), request.getParameter("password"),
+                        Authority.valueOf(request.getParameter("authority")));
+                UserHandler.changeUser(user);
                 returnUrl = request.getParameter("return");
                 if (returnUrl.equals("profile.jsp")) {
-                    request.getSession().setAttribute("user", user);
+                    session.setAttribute("user", user);
                 }
                 response.sendRedirect(returnUrl);
                 break;
@@ -80,15 +95,6 @@ public class UsersServlet extends HttpServlet {
                 response.sendRedirect("shop");
                 break;
             default:
-                if (user == null) {
-                    response.sendRedirect("sign_in.jsp?return=/users");
-                }
-                else if (user.getAuthority() != Authority.ADMIN) {
-                    response.sendError(HttpServletResponse.SC_FORBIDDEN);
-                }
-                ArrayList<UserInfo> users = UserHandler.getUsers();
-                request.setAttribute("users", users);
-                request.getRequestDispatcher("users.jsp").forward(request, response);
         }
     }
 

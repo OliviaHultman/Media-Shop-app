@@ -38,7 +38,7 @@
     <div class="content">
       <h1>Users</h1>
       <div class="side_element">
-        <a href="/create_user.jsp?return=/users"><button class="left_side_button">Add user</button></a>
+        <a href="/create_user.jsp?return=users"><button class="left_side_button">Add user</button></a>
       </div>
       <% ArrayList<UserInfo> users = (ArrayList<UserInfo>) request.getAttribute("users"); %>
       <% for (UserInfo userInfo : users) { %>

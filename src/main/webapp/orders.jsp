@@ -61,7 +61,7 @@
                             <%}%>
                         </select>
                         <input type="hidden" name="orderNr" value="<%=order.getOrderNr()%>">
-                        <input type="hidden" name="action" value="update-status">
+                        <input type="hidden" name="action" value="update">
                         <button type="submit" class="element_button">Update</button>
                     </form>
                 </div>

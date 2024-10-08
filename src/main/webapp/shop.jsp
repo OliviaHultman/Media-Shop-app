@@ -57,7 +57,7 @@
                     <%} else {%>
                         <p style="color: springgreen"> <%="In stock"%></p>
                     <%}%>
-                    <form method="post" action="shop">
+                    <form method="post" action="cart">
                         <input type="hidden" name="ean" value="<%= media.getEan()%>">
                         <input type="hidden" name="nrOfCopies" value="<%=nrOfCopies%>">
                         <input type="hidden" name="action" value="add">
