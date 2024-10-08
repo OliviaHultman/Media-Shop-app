@@ -1,7 +1,6 @@
 package bo;
 
 import db.DbUser;
-import ui.MediaInfo;
 import ui.UserInfo;
 
 import java.util.ArrayList;

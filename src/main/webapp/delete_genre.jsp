@@ -12,13 +12,14 @@
     <link href="css/webshop.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<form action="delete-genre" method="post" class="center_element">
+<form action="products" method="post" class="center_element">
     <label for="genre">Genre</label>
     <select name="genre" id="genre" required>
         <% for (String genre : (ArrayList<String>) request.getAttribute("genres")) {%>
         <option value="<%=genre%>"><%=genre%></option>
         <%}%>
     </select>
+    <input type="hidden" name="action" value="delete-genre">
     <div>
         <button type="submit">Delete</button>
     </div>

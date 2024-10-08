@@ -11,8 +11,8 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "webshop", value = "/webshop")
-public class WebshopServlet extends HttpServlet {
+@WebServlet(name = "shop", value = "/shop")
+public class ShopServlet extends HttpServlet {
 
     public void init() {
 

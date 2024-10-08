@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<body>
-    <meta http-equiv="Refresh" content="0; URL=/webshop">
-</body>
+    <body>
+        <meta http-equiv="Refresh" content="0; URL=/shop">
+    </body>
 </html>
